@@ -1,0 +1,54 @@
+---
+title: "1 Variable and Quantitative"
+format: html
+editor: visual
+---
+
+```{r}
+```
+
+
+# The Data
+
+## Loading Packages and the Data
+
+```{r}
+#| label: preliminaries
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(knitr)
+
+data(iris)
+```
+
+## The Iris Data Set
+
+This famous (Fisher's or Anderson's) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
+
+The first 5 rows of the iris dataset is shown in @tbl-iris.
+
+```{r}
+#| label: tbl-iris
+#| warning: false
+#| message: false
+#| tbl-cap: The first 6 observations in the iris dataset
+
+iris |>
+  head() |>
+  kable()
+```
+
+
+# Descriptive Statistics
+
+# Visualization
+
+# Hypothesis Testing
+
+## Research Question
+
+## Hypothesis and Test Statistics
+
+## Results and Interpretation
