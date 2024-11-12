@@ -1,53 +1,81 @@
 ---
-title: "1 Variable and Quantitative"
+title: "One Variable: Quantitative"
+author: Orville D. Hombrebueno
+date: today
 format: html
 editor: visual
+toc: true
 ---
 
-```{r}
-```
-
-
 # The Data
-
-## Loading Packages and the Data
 
 ```{r}
 #| label: preliminaries
 #| warning: false
 #| message: false
 
+# load packages
 library(tidyverse)
 library(knitr)
+library(gtsummary)
 
+# load the data
 data(iris)
 ```
 
-## The Iris Data Set
+## Edgar Anderson's Iris Data
 
 This famous (Fisher's or Anderson's) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
 
-The first 5 rows of the iris dataset is shown in @tbl-iris.
+The first 6 rows of the iris dataset is shown in @tbl-iris. To see more details about the data set, type `?iris` in the console.
 
 ```{r}
 #| label: tbl-iris
 #| warning: false
 #| message: false
-#| tbl-cap: The first 6 observations in the iris dataset
+#| tbl-cap: "The first 6 observations in the iris dataset."
 
-iris |>
-  head() |>
-  kable()
+iris |> # loading the data
+  head() |> # getting the first six rows of the data
+  kable( # creating a table
+    col.names = c( # changing the column names
+      "Sepal Length",
+      "Sepal Width",
+      "Petal Length",
+      "Petal Width",
+      "Species"
+    )
+  )
 ```
 
+## Descriptive Statistics
 
-# Descriptive Statistics
+The mean, standard deviation, minimum, and maximum of the dataset by species is shown in @tbl-summary.
 
-# Visualization
+```{r}
+#| label: tbl-summary
+#| tbl-cap: "Summary statistics for the iris dataset."
+#| message: false
+
+iris |> 
+  tbl_summary(
+    include = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width, Species),
+    statistic = all_continuous() ~ "{mean} ± {sd} ({min} - {max})",
+    digits = all_continuous() ~ 2,
+    label = list(
+      Sepal.Length ~ "Sepal Length",
+      Sepal.Width ~ "Sepal Width",
+      Petal.Length ~ "Petal Length",
+      Petal.Width ~ "Petal Width"
+    )
+  )
+```
 
 # Hypothesis Testing
 
 ## Research Question
+
+Is the sepal length 
 
 ## Hypothesis and Test Statistics
 
