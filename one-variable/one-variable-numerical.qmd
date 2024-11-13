@@ -1,0 +1,114 @@
+---
+title: "One Variable: Quantitative"
+author: Orville D. Hombrebueno
+date: today
+format:
+  html:
+    embed-resources: true
+editor: visual
+toc: true
+code-link: true
+code-fold: true
+cache: true
+---
+
+# The Data
+
+```{r}
+#| label: preliminaries
+#| warning: false
+#| message: false
+
+# load packages
+library(tidyverse) 
+library(knitr)
+library(gtsummary)
+library(ggstatsplot)
+library(downlit)
+
+# load the data
+data(iris)
+```
+
+## Edgar Anderson's Iris Data
+
+This famous (Fisher's or Anderson's) [iris](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x) data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
+
+The first 6 rows of the iris data set is shown in @tbl-iris.
+
+```{r}
+#| label: tbl-iris
+#| warning: false
+#| message: false
+#| tbl-cap: "The first 6 observations in the iris dataset."
+
+iris |> # loading the data
+  head() |> # getting the first six rows of the data
+  kable( # creating a table
+    col.names = c( # changing the column names
+      "Sepal Length",
+      "Sepal Width",
+      "Petal Length",
+      "Petal Width",
+      "Species"
+    )
+  )
+```
+
+## Descriptive Statistics
+
+The mean, standard deviation, minimum, and maximum of the data set by species is shown in @tbl-summary. There are a total of 150 observations.
+
+```{r}
+#| label: tbl-summary
+#| tbl-cap: "Summary statistics for the iris dataset."
+#| message: false
+
+iris |> 
+  tbl_summary(
+    include = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width, Species),
+    statistic = all_continuous() ~ "{mean} ± {sd} ({min} - {max})",
+    digits = all_continuous() ~ 2,
+    label = list(
+      Sepal.Length ~ "Sepal Length",
+      Sepal.Width ~ "Sepal Width",
+      Petal.Length ~ "Petal Length",
+      Petal.Width ~ "Petal Width"
+    )
+  )
+```
+
+# Hypothesis Testing
+
+## Research Question
+
+Is the mean sepal length in the dataset significantly different from the expected average of 5.8 cm?
+
+## Hypothesis and Test Statistics
+
+-   $H_0:\mu=5.8$
+
+-   $H_1:\mu\ne5.8$
+
+-   **one sample t-test**
+
+-   The variance is unknown. 
+
+## Results and Interpretation
+
+The histogram and test statistics for sepal length is shown on @fig-test. The *p*-value is displayed. Based on this plot and the *p*-value being greater than 5% (*p*-value = 0.52), we do not reject the null hypothesis. There is no significant difference between the mean sepal length of the data set and the expected average of 5.8 cm.
+
+```{r}
+#| label: fig-test
+#| fig-cap: Histogram and test statistics for sepal length.
+
+# plot with stat test
+gghistostats(
+  data = iris, # dataframe from which variable is to be taken
+  x = Sepal.Length, # numeric variable whose distribution is of interest
+  type = "parametric", # for student's t-test
+  test.value = 5.8, # default value is 0
+  xlab = "sepal length"
+) +
+  labs(caption = NULL) # remove caption
+```
