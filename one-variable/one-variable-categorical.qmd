@@ -89,9 +89,9 @@ Do the passengers have a 50/50 chance of surviving?
 
 ### Hypothesis and Test Statistics
 
--   $H_0:p=50\%$; proportions of surviving are equal
+-   $H_0:p=50\%$; proportions of surviving are equal.
 
--   $H_a:p\ne50\%$; proportions of surviving are different
+-   $H_a:p\ne50\%$; proportions of surviving are different.
 
 -   **chi-squared goodness of fit test**
 
