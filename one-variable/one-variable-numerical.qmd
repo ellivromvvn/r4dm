@@ -5,6 +5,7 @@ date: today
 format:
   html:
     embed-resources: true
+    smooth-scroll: true
 editor: visual
 toc: true
 code-link: true
@@ -40,7 +41,7 @@ The first 6 rows of the iris data set is shown in @tbl-iris.
 #| label: tbl-iris
 #| warning: false
 #| message: false
-#| tbl-cap: "The first 6 observations in the iris dataset."
+#| tbl-cap: "The first 6 observations of the data set."
 
 iris |> # loading the data
   head() |> # getting the first six rows of the data
@@ -57,11 +58,11 @@ iris |> # loading the data
 
 ## Descriptive Statistics
 
-The mean, standard deviation, minimum, and maximum of the data set by species is shown in @tbl-summary. There are a total of 150 observations.
+The mean, standard deviation, minimum, and maximum of the data set by species is shown in @tbl-summary. There are a total of 150 observations; 50 observations per species.
 
 ```{r}
 #| label: tbl-summary
-#| tbl-cap: "Summary statistics for the iris dataset."
+#| tbl-cap: "Summary statistics of the data set."
 #| message: false
 
 iris |> 
@@ -80,27 +81,33 @@ iris |>
 
 # Hypothesis Testing
 
-## Research Question
+::: {.panel-tabset}
 
-Is the mean sepal length in the dataset significantly different from the expected average of 5.8 cm?
+## Two-Sided
 
-## Hypothesis and Test Statistics
+### Research Question
 
--   $H_0:\mu=5.8$
+Is the mean sepal length different from the expected average of 5.8 cm?
 
--   $H_1:\mu\ne5.8$
+### Hypothesis and Test Statistics
+
+-   $H_0:\mu=5.8$; the mean sepal length is equal to 5.8 cm.
+
+-   $H_a:\mu\ne5.8$; the mean sepal length is different from 5.8 cm.
 
 -   **one sample t-test**
 
--   The variance is unknown. 
+-   The variance is unknown.
 
-## Results and Interpretation
+-   $\alpha=5\%$
 
-The histogram and test statistics for sepal length is shown on @fig-test. The *p*-value is displayed. Based on this plot and the *p*-value being greater than 5% (*p*-value = 0.52), we do not reject the null hypothesis. There is no significant difference between the mean sepal length of the data set and the expected average of 5.8 cm.
+### Results and Interpretation
+
+The histogram and test statistics is shown on @fig-test. Based on the histogram and the *p*-value being greater than 5% (*p*-value = 0.52), we do not reject the null hypothesis. There is no sufficient evidence that the mean sepal length is different from 5.8 cm.
 
 ```{r}
 #| label: fig-test
-#| fig-cap: Histogram and test statistics for sepal length.
+#| fig-cap: Histogram and test statistics.
 
 # plot with stat test
 gghistostats(
@@ -112,3 +119,36 @@ gghistostats(
 ) +
   labs(caption = NULL) # remove caption
 ```
+
+## One-Sided
+
+### Research Question
+
+Is the mean sepal length greater than the expected average of 5.7 cm?
+
+### Hypothesis and Test Statistics
+
+-   $H_0:\mu=5.7$; the mean sepal length is equal to 5.7 cm.
+
+-   $H_a:\mu>5.7$; the mean sepal length is greater than 5.7 cm.
+
+-   **one sample t-test**
+
+-   The variance is unknown.
+
+-   $\alpha=5\%$
+
+### Results and Interpretation
+
+```{r}
+#| label: test-os
+
+t.test(iris$Sepal.Length,
+  mu = 5.7,
+  alternative = "greater"
+)
+```
+
+The test statistics is shown above. Based on the results and the *p*-value being lesser than 5% (*p*-value = 0.02), we reject the null hypothesis. There is sufficient evidence that the mean sepal length is greater than the expected average of 5.7 cm.
+
+:::
