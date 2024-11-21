@@ -20,6 +20,7 @@ cache: true
 #| warning: false
 #| message: false
 
+# install packages: install.packages("package")
 # load packages
 library(tidyverse) 
 library(knitr)
@@ -27,7 +28,7 @@ library(gtsummary)
 library(ggstatsplot)
 library(downlit)
 
-# load the data
+# load data
 data(iris)
 ```
 
@@ -41,12 +42,13 @@ The first 6 rows of the iris data set is shown in @tbl-iris.
 #| label: tbl-iris
 #| warning: false
 #| message: false
+#| error: false
 #| tbl-cap: "The first 6 observations of the data set."
 
-iris |> # loading the data
-  head() |> # getting the first six rows of the data
-  kable( # creating a table
-    col.names = c( # changing the column names
+iris |> # call the data
+  head() |> # get the first six rows of the data
+  kable( # create a table
+    col.names = c( # change the column names
       "Sepal Length",
       "Sepal Width",
       "Petal Length",
@@ -65,12 +67,12 @@ The mean, standard deviation, minimum, and maximum of the data set by species is
 #| tbl-cap: "Summary statistics of the data set."
 #| message: false
 
-iris |> 
-  tbl_summary(
-    include = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width, Species),
-    statistic = all_continuous() ~ "{mean} ± {sd} ({min} - {max})",
-    digits = all_continuous() ~ 2,
-    label = list(
+iris |> # call the data
+  tbl_summary( # create a table
+    include = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width, Species), # select variables
+    statistic = all_continuous() ~ "{mean} ± {sd} ({min} - {max})", # descriptive statistics
+    digits = all_continuous() ~ 2, # no. of digits (rounding)
+    label = list( # variable names
       Sepal.Length ~ "Sepal Length",
       Sepal.Width ~ "Sepal Width",
       Petal.Length ~ "Petal Length",
@@ -95,11 +97,13 @@ Is the mean sepal length different from the expected average of 5.8 cm?
 
 -   $H_a:\mu\ne5.8$; the mean sepal length is different from 5.8 cm.
 
+-   Significance level, $\alpha=5\%$.
+
 -   **one sample t-test**
 
 -   The variance is unknown.
 
--   $\alpha=5\%$
+-   $n>30$; large sample.
 
 ### Results and Interpretation
 
@@ -109,13 +113,12 @@ The histogram and test statistics is shown on @fig-test. Based on the histogram 
 #| label: fig-test
 #| fig-cap: Histogram and test statistics.
 
-# plot with stat test
-gghistostats(
-  data = iris, # dataframe from which variable is to be taken
-  x = Sepal.Length, # numeric variable whose distribution is of interest
+gghistostats( # create figure
+  data = iris, # the data
+  x = Sepal.Length, # variable of interest
   type = "parametric", # for student's t-test
   test.value = 5.8, # default value is 0
-  xlab = "sepal length"
+  xlab = "sepal length" # label of x-axis
 ) +
   labs(caption = NULL) # remove caption
 ```
@@ -132,20 +135,23 @@ Is the mean sepal length greater than the expected average of 5.7 cm?
 
 -   $H_a:\mu>5.7$; the mean sepal length is greater than 5.7 cm.
 
+-   Significance level, $\alpha=5\%$.
+
 -   **one sample t-test**
 
 -   The variance is unknown.
 
--   $\alpha=5\%$
+-   $n>30$; large sample.
 
 ### Results and Interpretation
 
 ```{r}
 #| label: test-os
 
-t.test(iris$Sepal.Length,
-  mu = 5.7,
-  alternative = "greater"
+t.test(
+  iris$Sepal.Length, # selecting sepal length
+  mu = 5.7, # hypothesized value of the mean in the population
+  alternative = "greater" # other options: "two.sided" or "less"
 )
 ```
 
