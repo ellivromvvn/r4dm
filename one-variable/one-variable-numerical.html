@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Orville D. Hombrebueno">
-<meta name="dcterms.date" content="2024-11-14">
+<meta name="dcterms.date" content="2024-11-21">
 <title>One Variable: Quantitative</title>
 <style>
 code{white-space: pre-wrap;}
@@ -3240,7 +3240,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 14, 2024</p>
+      <p class="date">November 21, 2024</p>
     </div>
   </div>
   
@@ -3251,14 +3251,15 @@ window.Quarto = {
 
 </header><section id="the-data" class="level1"><h1>The Data</h1>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># load packages</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># install packages: install.packages(&quot;package&quot;)</span></span>
+<span><span class="co"># load packages</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> </span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ddsjoberg/gtsummary">gtsummary</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://downlit.r-lib.org/">downlit</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># load the data</span></span>
+<span><span class="co"># load data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
@@ -3266,10 +3267,10 @@ window.Quarto = {
 <p>This famous (Fisher’s or Anderson’s) <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x">iris</a> data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.</p>
 <p>The first 6 rows of the iris data set is shown in <a href="#tbl-iris" class="quarto-xref">Table 1</a>.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris</span> <span class="op">|&gt;</span> <span class="co"># loading the data</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># getting the first six rows of the data</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span> <span class="co"># creating a table</span></span>
-<span>    col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="co"># changing the column names</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris</span> <span class="op">|&gt;</span> <span class="co"># call the data</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># get the first six rows of the data</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span> <span class="co"># create a table</span></span>
+<span>    col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="co"># change the column names</span></span>
 <span>      <span class="st">&quot;Sepal Length&quot;</span>,</span>
 <span>      <span class="st">&quot;Sepal Width&quot;</span>,</span>
 <span>      <span class="st">&quot;Petal Length&quot;</span>,</span>
@@ -3343,12 +3344,12 @@ Table 1: The first 6 observations of the data set.
 </section><section id="descriptive-statistics" class="level2"><h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
 <p>The mean, standard deviation, minimum, and maximum of the data set by species is shown in <a href="#tbl-summary" class="quarto-xref">Table 2</a>. There are a total of 150 observations; 50 observations per species.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_summary.html">tbl_summary</a></span><span class="op">(</span></span>
-<span>    include <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Sepal.Length</span>, <span class="va">Sepal.Width</span>, <span class="va">Petal.Length</span>, <span class="va">Petal.Width</span>, <span class="va">Species</span><span class="op">)</span>,</span>
-<span>    statistic <span class="op">=</span> <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/select_helpers.html">all_continuous</a></span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="st">&quot;{mean} ± {sd} ({min} - {max})&quot;</span>,</span>
-<span>    digits <span class="op">=</span> <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/select_helpers.html">all_continuous</a></span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="fl">2</span>,</span>
-<span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris</span> <span class="op">|&gt;</span> <span class="co"># call the data</span></span>
+<span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_summary.html">tbl_summary</a></span><span class="op">(</span> <span class="co"># create a table</span></span>
+<span>    include <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Sepal.Length</span>, <span class="va">Sepal.Width</span>, <span class="va">Petal.Length</span>, <span class="va">Petal.Width</span>, <span class="va">Species</span><span class="op">)</span>, <span class="co"># select variables</span></span>
+<span>    statistic <span class="op">=</span> <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/select_helpers.html">all_continuous</a></span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="st">&quot;{mean} ± {sd} ({min} - {max})&quot;</span>, <span class="co"># descriptive statistics</span></span>
+<span>    digits <span class="op">=</span> <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/select_helpers.html">all_continuous</a></span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="fl">2</span>, <span class="co"># no. of digits (rounding)</span></span>
+<span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span> <span class="co"># variable names</span></span>
 <span>      <span class="va">Sepal.Length</span> <span class="op">~</span> <span class="st">&quot;Sepal Length&quot;</span>,</span>
 <span>      <span class="va">Sepal.Width</span> <span class="op">~</span> <span class="st">&quot;Sepal Width&quot;</span>,</span>
 <span>      <span class="va">Petal.Length</span> <span class="op">~</span> <span class="st">&quot;Petal Length&quot;</span>,</span>
@@ -3360,20 +3361,20 @@ Table 1: The first 6 observations of the data set.
 Table 2: Summary statistics of the data set.
 </figcaption><div aria-describedby="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="ydewjpxscn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ydewjpxscn table {
+<div id="xhkgrueail" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xhkgrueail table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#ydewjpxscn thead, #ydewjpxscn tbody, #ydewjpxscn tfoot, #ydewjpxscn tr, #ydewjpxscn td, #ydewjpxscn th {
+#xhkgrueail thead, #xhkgrueail tbody, #xhkgrueail tfoot, #xhkgrueail tr, #xhkgrueail td, #xhkgrueail th {
 border-style: none;
 }
-#ydewjpxscn p {
+#xhkgrueail p {
 margin: 0;
 padding: 0;
 }
-#ydewjpxscn .gt_table {
+#xhkgrueail .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -3398,11 +3399,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#ydewjpxscn .gt_caption {
+#xhkgrueail .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#ydewjpxscn .gt_title {
+#xhkgrueail .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -3413,7 +3414,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#ydewjpxscn .gt_subtitle {
+#xhkgrueail .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -3424,7 +3425,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#ydewjpxscn .gt_heading {
+#xhkgrueail .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -3435,12 +3436,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ydewjpxscn .gt_bottom_border {
+#xhkgrueail .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ydewjpxscn .gt_col_headings {
+#xhkgrueail .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3454,7 +3455,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ydewjpxscn .gt_col_heading {
+#xhkgrueail .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3473,7 +3474,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#ydewjpxscn .gt_column_spanner_outer {
+#xhkgrueail .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3484,13 +3485,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#ydewjpxscn .gt_column_spanner_outer:first-child {
+#xhkgrueail .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#ydewjpxscn .gt_column_spanner_outer:last-child {
+#xhkgrueail .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#ydewjpxscn .gt_column_spanner {
+#xhkgrueail .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -3501,10 +3502,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#ydewjpxscn .gt_spanner_row {
+#xhkgrueail .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#ydewjpxscn .gt_group_heading {
+#xhkgrueail .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3529,7 +3530,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#ydewjpxscn .gt_empty_group_heading {
+#xhkgrueail .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -3543,13 +3544,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#ydewjpxscn .gt_from_md > :first-child {
+#xhkgrueail .gt_from_md > :first-child {
 margin-top: 0;
 }
-#ydewjpxscn .gt_from_md > :last-child {
+#xhkgrueail .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#ydewjpxscn .gt_row {
+#xhkgrueail .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3567,7 +3568,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#ydewjpxscn .gt_stub {
+#xhkgrueail .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3579,7 +3580,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ydewjpxscn .gt_stub_row_group {
+#xhkgrueail .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3592,13 +3593,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#ydewjpxscn .gt_row_group_first td {
+#xhkgrueail .gt_row_group_first td {
 border-top-width: 2px;
 }
-#ydewjpxscn .gt_row_group_first th {
+#xhkgrueail .gt_row_group_first th {
 border-top-width: 2px;
 }
-#ydewjpxscn .gt_summary_row {
+#xhkgrueail .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3607,14 +3608,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ydewjpxscn .gt_first_summary_row {
+#xhkgrueail .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#ydewjpxscn .gt_first_summary_row.thick {
+#xhkgrueail .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#ydewjpxscn .gt_last_summary_row {
+#xhkgrueail .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3623,7 +3624,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ydewjpxscn .gt_grand_summary_row {
+#xhkgrueail .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3632,7 +3633,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ydewjpxscn .gt_first_grand_summary_row {
+#xhkgrueail .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3641,7 +3642,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#ydewjpxscn .gt_last_grand_summary_row_top {
+#xhkgrueail .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3650,10 +3651,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#ydewjpxscn .gt_striped {
+#xhkgrueail .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#ydewjpxscn .gt_table_body {
+#xhkgrueail .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3661,7 +3662,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ydewjpxscn .gt_footnotes {
+#xhkgrueail .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3674,7 +3675,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ydewjpxscn .gt_footnote {
+#xhkgrueail .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -3682,7 +3683,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ydewjpxscn .gt_sourcenotes {
+#xhkgrueail .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3695,64 +3696,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ydewjpxscn .gt_sourcenote {
+#xhkgrueail .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ydewjpxscn .gt_left {
+#xhkgrueail .gt_left {
 text-align: left;
 }
-#ydewjpxscn .gt_center {
+#xhkgrueail .gt_center {
 text-align: center;
 }
-#ydewjpxscn .gt_right {
+#xhkgrueail .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#ydewjpxscn .gt_font_normal {
+#xhkgrueail .gt_font_normal {
 font-weight: normal;
 }
-#ydewjpxscn .gt_font_bold {
+#xhkgrueail .gt_font_bold {
 font-weight: bold;
 }
-#ydewjpxscn .gt_font_italic {
+#xhkgrueail .gt_font_italic {
 font-style: italic;
 }
-#ydewjpxscn .gt_super {
+#xhkgrueail .gt_super {
 font-size: 65%;
 }
-#ydewjpxscn .gt_footnote_marks {
+#xhkgrueail .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#ydewjpxscn .gt_asterisk {
+#xhkgrueail .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#ydewjpxscn .gt_indent_1 {
+#xhkgrueail .gt_indent_1 {
 text-indent: 5px;
 }
-#ydewjpxscn .gt_indent_2 {
+#xhkgrueail .gt_indent_2 {
 text-indent: 10px;
 }
-#ydewjpxscn .gt_indent_3 {
+#xhkgrueail .gt_indent_3 {
 text-indent: 15px;
 }
-#ydewjpxscn .gt_indent_4 {
+#xhkgrueail .gt_indent_4 {
 text-indent: 20px;
 }
-#ydewjpxscn .gt_indent_5 {
+#xhkgrueail .gt_indent_5 {
 text-indent: 25px;
 }
-#ydewjpxscn .katex-display {
+#xhkgrueail .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#ydewjpxscn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#xhkgrueail div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -3826,19 +3827,19 @@ height: 0px !important;
 <ul>
 <li><p><span class="math inline">\(H_0:\mu=5.8\)</span>; the mean sepal length is equal to 5.8 cm.</p></li>
 <li><p><span class="math inline">\(H_a:\mu\ne5.8\)</span>; the mean sepal length is different from 5.8 cm.</p></li>
+<li><p>Significance level, <span class="math inline">\(\alpha=5\%\)</span>.</p></li>
 <li><p><strong>one sample t-test</strong></p></li>
 <li><p>The variance is unknown.</p></li>
-<li><p><span class="math inline">\(\alpha=5\%\)</span></p></li>
+<li><p><span class="math inline">\(n&gt;30\)</span>; large sample.</p></li>
 </ul></section><section id="results-and-interpretation" class="level3"><h3 class="anchored" data-anchor-id="results-and-interpretation">Results and Interpretation</h3>
 <p>The histogram and test statistics is shown on <a href="#fig-test" class="quarto-xref">Figure 1</a>. Based on the histogram and the <em>p</em>-value being greater than 5% (<em>p</em>-value = 0.52), we do not reject the null hypothesis. There is no sufficient evidence that the mean sepal length is different from 5.8 cm.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># plot with stat test</span></span>
-<span><span class="fu"><a href="https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html">gghistostats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">iris</span>, <span class="co"># dataframe from which variable is to be taken</span></span>
-<span>  x <span class="op">=</span> <span class="va">Sepal.Length</span>, <span class="co"># numeric variable whose distribution is of interest</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html">gghistostats</a></span><span class="op">(</span> <span class="co"># create figure</span></span>
+<span>  data <span class="op">=</span> <span class="va">iris</span>, <span class="co"># the data</span></span>
+<span>  x <span class="op">=</span> <span class="va">Sepal.Length</span>, <span class="co"># variable of interest</span></span>
 <span>  type <span class="op">=</span> <span class="st">&quot;parametric&quot;</span>, <span class="co"># for student&#39;s t-test</span></span>
 <span>  test.value <span class="op">=</span> <span class="fl">5.8</span>, <span class="co"># default value is 0</span></span>
-<span>  xlab <span class="op">=</span> <span class="st">&quot;sepal length&quot;</span></span>
+<span>  xlab <span class="op">=</span> <span class="st">&quot;sepal length&quot;</span> <span class="co"># label of x-axis</span></span>
 <span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="co"># remove caption</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
@@ -3861,14 +3862,16 @@ Figure 1: Histogram and test statistics.
 <ul>
 <li><p><span class="math inline">\(H_0:\mu=5.7\)</span>; the mean sepal length is equal to 5.7 cm.</p></li>
 <li><p><span class="math inline">\(H_a:\mu&gt;5.7\)</span>; the mean sepal length is greater than 5.7 cm.</p></li>
+<li><p>Significance level, <span class="math inline">\(\alpha=5\%\)</span>.</p></li>
 <li><p><strong>one sample t-test</strong></p></li>
 <li><p>The variance is unknown.</p></li>
-<li><p><span class="math inline">\(\alpha=5\%\)</span></p></li>
+<li><p><span class="math inline">\(n&gt;30\)</span>; large sample.</p></li>
 </ul></section><section id="results-and-interpretation-1" class="level3"><h3 class="anchored" data-anchor-id="results-and-interpretation-1">Results and Interpretation</h3>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Length</span>,</span>
-<span>  mu <span class="op">=</span> <span class="fl">5.7</span>,</span>
-<span>  alternative <span class="op">=</span> <span class="st">&quot;greater&quot;</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span></span>
+<span>  <span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Length</span>, <span class="co"># selecting sepal length</span></span>
+<span>  mu <span class="op">=</span> <span class="fl">5.7</span>, <span class="co"># hypothesized value of the mean in the population</span></span>
+<span>  alternative <span class="op">=</span> <span class="st">&quot;greater&quot;</span> <span class="co"># other options: &quot;two.sided&quot; or &quot;less&quot;</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>
