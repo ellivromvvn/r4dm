@@ -81,8 +81,7 @@ iris |>
 
 # Hypothesis Testing
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ## Two-Sided
 
 ### Research Question
@@ -150,5 +149,4 @@ t.test(iris$Sepal.Length,
 ```
 
 The test statistics is shown above. Based on the results and the *p*-value being lesser than 5% (*p*-value = 0.02), we reject the null hypothesis. There is sufficient evidence that the mean sepal length is greater than the expected average of 5.7 cm.
-
 :::

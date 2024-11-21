@@ -35,21 +35,21 @@ library(downlit)
 
 ## The Titanic Data Set
 
-The `Titanic_full` data set of the <span style="font-family:monospace;">{ggstatsplot}</span> package is a data frame with 2201 rows and 5 variables.
+The `Titanic_full` data set of the [{ggstatsplot}]{style="font-family:monospace;"} package is a data frame with 2201 rows and 5 variables.
 
-- id. Dummy identity number for each person.
+-   id. Dummy identity number for each person.
 
-- Class. 1st, 2nd, 3rd, Crew.
+-   Class. 1st, 2nd, 3rd, Crew.
 
-- Sex. Male, Female.
+-   Sex. Male, Female.
 
-- Age. Child, Adult.
+-   Age. Child, Adult.
 
-- Survived. No, Yes.
+-   Survived. No, Yes.
 
 This data set provides information on the fate of passengers on the fatal maiden voyage of the ocean liner Titanic, summarized according to economic status (class), sex, age and survival.
 
-The first 6 rows of the titanic data set is shown in @tbl-titanic.  
+The first 6 rows of the titanic data set is shown in @tbl-titanic.
 
 ```{r}
 #| label: tbl-titanic
@@ -79,8 +79,7 @@ titanic |>
 
 # Hypothesis Testing
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ## Two-Sided
 
 ### Research Question
@@ -117,7 +116,7 @@ ggpiestats(
 
 ### Research Question
 
-Is the survival rate  less than the expected survival rate of 35%?
+Is the survival rate less than the expected survival rate of 35%?
 
 ### Hypothesis and Test Statistics
 
@@ -143,5 +142,4 @@ prop.test(
 ```
 
 The test statistics is shown above. Based on the results and the *p*-value being lesser than 5% (*p*-value = 0.004), we reject the null hypothesis. There is strong evidence that the survival rate is less than the expected survival rate of 35%.
-
 :::
