@@ -27,10 +27,10 @@ library(ggstatsplot)
 library(downlit)
 
 # load the data
-  titanic <- ggstatsplot::Titanic_full |>
-    mutate(
-      Class = factor(Class)
-    )
+titanic <- ggstatsplot::Titanic_full |>
+  mutate(
+    Class = factor(Class)
+  )
 ```
 
 ## The Titanic Data Set
