@@ -2,7 +2,9 @@
 title: "One Variable: Quantitative"
 author: Orville D. Hombrebueno
 date: today
-format: docx
+format: 
+  docx:
+    reference-doc: excel/excel-report-template.docx
 editor: visual
 toc: true
 cache: true
