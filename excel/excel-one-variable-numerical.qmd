@@ -2,9 +2,7 @@
 title: "One Variable: Quantitative"
 author: Orville D. Hombrebueno
 date: today
-format: 
-  docx:
-    reference-doc: excel-report-template.docx
+format: docx
 editor: visual
 toc: true
 cache: true
@@ -27,7 +25,6 @@ library(gtsummary)
 library(ggstatsplot)
 library(downlit)
 library(broom)
-library(datasets)
 
 # load data
 data(iris)
@@ -112,7 +109,7 @@ The histogram and test statistics is shown on @fig-test. Based on the histogram 
 ```{r}
 #| label: fig-test
 #| fig-cap: Histogram and test statistics.
-#| fig-height: 2
+#| fig-height: 4
 
 gghistostats( # create figure
   data = iris, # the data
@@ -155,7 +152,6 @@ t.test(
   alternative = "greater" # other options: "two.sided" or "less"
 ) |>
   tidy() |>
-  select(estimate, statistic, method, alternative) |>
   kable()
 ```
 
