@@ -15,8 +15,6 @@ cache: true
 
 # The Data
 
-
-
 ```{r}
 #| label: preliminaries
 #| warning: false
@@ -31,31 +29,38 @@ library(ggstatsplot)
 library(downlit)
 
 # load data
-data(iris)
+data(ChickWeight)
 ```
 
 ## Edgar Anderson's Iris Data
 
-This famous (Fisher's or Anderson's) [iris](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x) data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
+The `ChickWeight` data frame has 578 rows and 4 columns from an experiment on the effect of diet on early growth of chicks.
+
+- weight. a numeric vector giving the body weight of the chick (gm).
+
+- Time. a numeric vector giving the number of days since birth when the measurement was made.
+
+- Chick. an ordered factor with levels 18 < ... < 48 giving a unique identifier for the chick. The ordering of the levels groups chicks on the same diet together and orders them according to their final weight (lightest to heaviest) within diet.
+
+- Diet. a factor with levels 1, ..., 4 indicating which experimental diet the chick received.
 
 The first 6 rows of the iris data set is shown in @tbl-iris.
 
 ```{r}
-#| label: tbl-iris
+#| label: tbl-cw
 #| warning: false
 #| message: false
 #| error: false
 #| tbl-cap: "The first 6 observations of the data set."
 
-iris |> # call the data
+ChickWeight |> # call the data
   head() |> # get the first six rows of the data
   kable( # create a table
     col.names = c( # change the column names
-      "Chick Weight",
-      "Sepal Width",
-      "Petal Length",
-      "Petal Width",
-      "Species"
+      "Weight",
+      "Time",
+      "Chick",
+      "Diet"
     )
   )
 ```
@@ -69,18 +74,8 @@ The mean, standard deviation, minimum, and maximum of the data set by species is
 #| tbl-cap: "Summary statistics of the data set."
 #| message: false
 
-iris |> # call the data
-  tbl_summary( # create a table
-    include = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width, Species), # select variables
-    statistic = all_continuous() ~ "{mean} ± {sd} ({min} - {max})", # descriptive statistics
-    digits = all_continuous() ~ 2, # no. of digits (rounding)
-    label = list( # variable names
-      Sepal.Length ~ "Sepal Length",
-      Sepal.Width ~ "Sepal Width",
-      Petal.Length ~ "Petal Length",
-      Petal.Width ~ "Petal Width"
-    )
-  )
+ChickWeight |> 
+  tbl_summary()
 ```
 
 # Hypothesis Testing
@@ -94,9 +89,9 @@ Is the mean sepal length different from the expected average of 5.8 cm?
 
 ### Hypothesis and Test Statistics
 
--   $H_0:\mu=5.9$; the mean sepal length is equal to 5.9 cm.
+-   $H_0:\mu=5.8$; the mean sepal length is equal to 5.8 cm.
 
--   $H_a:\mu\ne5.9$; the mean sepal length is different from 5.9 cm.
+-   $H_a:\mu\ne5.8$; the mean sepal length is different from 5.8 cm.
 
 -   Significance level, $\alpha=5\%$.
 
