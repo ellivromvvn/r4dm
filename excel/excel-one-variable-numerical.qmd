@@ -26,6 +26,7 @@ library(knitr)
 library(gtsummary)
 library(ggstatsplot)
 library(downlit)
+library(broom)
 
 # load data
 data(iris)
@@ -151,7 +152,8 @@ t.test(
   mu = 5.7, # hypothesized value of the mean in the population
   alternative = "greater" # other options: "two.sided" or "less"
 ) |>
-  tidy()
+  tidy() |>
+  kable()
 ```
 
 The test statistics is shown above. Based on the results and the *p*-value being lesser than 5% (*p*-value = 0.02), we reject the null hypothesis. There is sufficient evidence that the mean sepal length is greater than the expected average of 5.7 cm.
