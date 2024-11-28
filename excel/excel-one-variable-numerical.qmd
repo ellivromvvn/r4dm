@@ -27,7 +27,6 @@ library(gtsummary)
 library(ggstatsplot)
 library(downlit)
 library(broom)
-library(datasets)
 
 # load data
 data(iris)
