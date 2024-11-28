@@ -2,7 +2,9 @@
 title: "One Variable: Quantitative"
 author: Orville D. Hombrebueno
 date: today
-format: docx
+format: 
+  docx:
+    reference-doc: excel-report-template.docx
 editor: visual
 toc: true
 cache: true
@@ -34,7 +36,7 @@ data(iris)
 
 This famous (Fisher's or Anderson's) [iris](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x) data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
 
-The first 6 rows of the iris data set is shown in @tbl-iris.
+The first 6 rows of the iris data set are shown in @tbl-iris.
 
 ```{r}
 #| label: tbl-iris
@@ -109,7 +111,7 @@ The histogram and test statistics is shown on @fig-test. Based on the histogram 
 ```{r}
 #| label: fig-test
 #| fig-cap: Histogram and test statistics.
-#| fig-height: 4
+#| fig-height: 3
 
 gghistostats( # create figure
   data = iris, # the data
@@ -144,7 +146,8 @@ Is the mean sepal length greater than the expected average of 5.7 cm?
 ### Results and Interpretation
 
 ```{r}
-#| label: test-os
+#| label: tbl-stats
+#| tbl-cap: Test statistics.
 
 t.test(
   iris$Sepal.Length, # selecting sepal length
@@ -152,8 +155,9 @@ t.test(
   alternative = "greater" # other options: "two.sided" or "less"
 ) |>
   tidy() |>
+  select(estimate, statistic, method, alternative) |>
   kable()
 ```
 
-The test statistics is shown above. Based on the results and the *p*-value being lesser than 5% (*p*-value = 0.02), we reject the null hypothesis. There is sufficient evidence that the mean sepal length is greater than the expected average of 5.7 cm.
+The test statistics is shown in @tbl-stats. Based on the results and the *p*-value being lesser than 5% (*p*-value = 0.02), we reject the null hypothesis. There is sufficient evidence that the mean sepal length is greater than the expected average of 5.7 cm.
 :::
