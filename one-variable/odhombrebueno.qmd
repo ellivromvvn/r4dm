@@ -83,6 +83,23 @@ ChickWeight |>
   )
 ```
 
+A visualization of the sepal length is shown in @fig-viz.
+
+```{r}
+#| label: fig-viz
+#| fig-cap: Histogram with mean line.
+#| fig-height: 3
+
+mean_value <- mean(ChickWeight$weight)
+
+ChickWeight |>
+  ggplot(aes(x = weight)) +
+  geom_histogram(binwidth = 20, fill = "skyblue", color = "black") +
+  geom_vline(aes(xintercept = mean_value), color = "red", linetype = "dashed") +
+  labs(x = "Sepal Length", y = "Count") +
+  theme_minimal()
+```
+
 # Hypothesis Testing
 
 ### Research Question

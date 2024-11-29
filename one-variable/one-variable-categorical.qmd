@@ -83,6 +83,7 @@ A visualization of the `Survived` variable is shown in @fig-viz.
 ```{r}
 #| label: fig-viz
 #| fig-cap: Bar chart
+#| fig-height: 3
 
 ggplot(titanic, aes(x=Survived)) + 
   geom_bar() +
