@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Orville D. Hombrebueno">
-<meta name="dcterms.date" content="2024-11-21">
+<meta name="dcterms.date" content="2024-11-28">
 <title>One Variable: Qualitative</title>
 <style>
 code{white-space: pre-wrap;}
@@ -3239,7 +3239,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 21, 2024</p>
+      <p class="date">November 28, 2024</p>
     </div>
   </div>
   
@@ -3256,12 +3256,13 @@ window.Quarto = {
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ddsjoberg/gtsummary">gtsummary</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://downlit.r-lib.org/">downlit</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># load the data</span></span>
-<span>  <span class="va">titanic</span> <span class="op">&lt;-</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/reference/Titanic_full.html">Titanic_full</a></span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>      Class <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Class</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">titanic</span> <span class="op">&lt;-</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/reference/Titanic_full.html">Titanic_full</a></span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    Class <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Class</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="the-titanic-data-set" class="level2"><h2 class="anchored" data-anchor-id="the-titanic-data-set">The Titanic Data Set</h2>
@@ -3836,8 +3837,9 @@ height: 0px !important;
 <ul>
 <li><p><span class="math inline">\(H_0:p=50\%\)</span>; proportions of surviving are equal.</p></li>
 <li><p><span class="math inline">\(H_a:p\ne50\%\)</span>; proportions of surviving are different.</p></li>
+<li><p>Significance level, <span class="math inline">\(\alpha=5\%\)</span>.</p></li>
 <li><p><strong>chi-squared goodness of fit test</strong></p></li>
-<li><p><span class="math inline">\(\alpha=5\%\)</span></p></li>
+<li><p>Success-failure condition is met.</p></li>
 </ul></section><section id="results-and-interpretation" class="level3"><h3 class="anchored" data-anchor-id="results-and-interpretation">Results and Interpretation</h3>
 <p>The pie chart and test statistics is shown on <a href="#fig-test" class="quarto-xref">Figure 1</a>. Based on the pie chart and the <em>p</em>-value being lesser than 5% (<em>p</em>-value = .001), we reject the null hypothesis. There is a strong evidence that the proportion of surviving is different among passengers. This may be influenced by certain factors like class, gender, or age?</p>
 <div class="cell">
@@ -3867,31 +3869,56 @@ Figure 1: Pie chart and test statistics.
 <ul>
 <li><p><span class="math inline">\(H_0:p=35\%\)</span>; the survival rate is equal to the expected survival rate of 35%.</p></li>
 <li><p><span class="math inline">\(H_a:p&lt;35\%\)</span>; the survival rate is less than the expected survival rate of 35%.</p></li>
+<li><p>Significance level, <span class="math inline">\(\alpha=5\%\)</span>.</p></li>
 <li><p><strong>one proportion Z-test</strong></p></li>
-<li><p><span class="math inline">\(\alpha=5\%\)</span></p></li>
+<li><p>Success-failure condition is met.</p></li>
 </ul></section><section id="results-and-interpretation-1" class="level3"><h3 class="anchored" data-anchor-id="results-and-interpretation-1">Results and Interpretation</h3>
+<p>The test statistics is shown in <a href="#tbl-stats-os" class="quarto-xref">Table 3</a>.</p>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/prop.test.html">prop.test</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="fl">711</span>, <span class="co"># number of successes</span></span>
 <span>  n <span class="op">=</span> <span class="fl">2201</span>, <span class="co"># total number of trials (711 + 1490)</span></span>
 <span>  p <span class="op">=</span> <span class="fl">0.35</span>,</span>
 <span>  alternative <span class="op">=</span> <span class="st">&quot;less&quot;</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
-<pre><code>
-    1-sample proportions test with continuity correction
-
-data:  711 out of 2201, null probability 0.35
-X-squared = 6.9166, df = 1, p-value = 0.00427
-alternative hypothesis: true p is less than 0.35
-95 percent confidence interval:
- 0.000000 0.339869
-sample estimates:
-       p 
-0.323035 </code></pre>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">estimate</span>, <span class="va">statistic</span>, <span class="va">p.value</span>, <span class="va">method</span>, <span class="va">alternative</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">.x</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div id="tbl-stats-os" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-stats-os-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table 3: Test statistics.
+</figcaption><div aria-describedby="tbl-stats-os-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 57%">
+<col style="width: 13%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+<th style="text-align: left;">method</th>
+<th style="text-align: left;">alternative</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">6.92</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">1-sample proportions test with continuity correction</td>
+<td style="text-align: left;">less</td>
+</tr></tbody>
+</table>
 </div>
 </div>
-<p>The test statistics is shown above. Based on the results and the <em>p</em>-value being lesser than 5% (<em>p</em>-value = 0.004), we reject the null hypothesis. There is strong evidence that the survival rate is less than the expected survival rate of 35%.</p>
+</figure>
+</div>
+</div>
+<p>Based on the results and the <em>p</em>-value being lesser than 5% (<em>p</em>-value = 0.004), we reject the null hypothesis. There is strong evidence that the survival rate is less than the expected survival rate of 35%.</p>
 </section>
 </div>
 </div>

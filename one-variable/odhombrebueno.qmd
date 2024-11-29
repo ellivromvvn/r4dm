@@ -1,5 +1,5 @@
 ---
-title: "The Iris Dataset"
+title: "One Variable: Quantitative"
 author: Orville D. Hombrebueno
 date: today
 format:
@@ -27,24 +27,25 @@ library(knitr)
 library(gtsummary)
 library(ggstatsplot)
 library(downlit)
+library(broom)
 
 # load data
 data(ChickWeight)
 ```
 
-## Edgar Anderson's Iris Data
+## Weight versus age of chicks on different diets
 
 The `ChickWeight` data frame has 578 rows and 4 columns from an experiment on the effect of diet on early growth of chicks.
 
-- weight. a numeric vector giving the body weight of the chick (gm).
+-   weight. a numeric vector giving the body weight of the chick (gm).
 
-- Time. a numeric vector giving the number of days since birth when the measurement was made.
+-   Time. a numeric vector giving the number of days since birth when the measurement was made.
 
-- Chick. an ordered factor with levels 18 < ... < 48 giving a unique identifier for the chick. The ordering of the levels groups chicks on the same diet together and orders them according to their final weight (lightest to heaviest) within diet.
+-   Chick. an ordered factor with levels 18 \< ... \< 48 giving a unique identifier for the chick. The ordering of the levels groups chicks on the same diet together and orders them according to their final weight (lightest to heaviest) within diet.
 
-- Diet. a factor with levels 1, ..., 4 indicating which experimental diet the chick received.
+-   Diet. a factor with levels 1, ..., 4 indicating which experimental diet the chick received.
 
-The first 6 rows of the iris data set is shown in @tbl-iris.
+The first 6 rows of the ChickWeight data set is shown in @tbl-cw.
 
 ```{r}
 #| label: tbl-cw
@@ -75,23 +76,24 @@ The mean, standard deviation, minimum, and maximum of the data set by species is
 #| message: false
 
 ChickWeight |> 
-  tbl_summary()
+  tbl_summary(
+    include = c(weight, Time, Diet),
+    statistic = all_continuous() ~ "{mean} ± {sd} ({min} - {max})", # descriptive statistics
+    digits = all_continuous() ~ 2, # no. of digits (rounding)
+  )
 ```
 
 # Hypothesis Testing
 
-::: panel-tabset
-## Two-Sided
-
 ### Research Question
 
-Is the mean sepal length different from the expected average of 5.8 cm?
+Is the mean weight different from the expected average of 120 gm?
 
 ### Hypothesis and Test Statistics
 
--   $H_0:\mu=5.8$; the mean sepal length is equal to 5.8 cm.
+-   $H_0:\mu=120$; the mean weight is equal to 120 gm.
 
--   $H_a:\mu\ne5.8$; the mean sepal length is different from 5.8 cm.
+-   $H_a:\mu\ne120$; the mean weigh is different from 120 gm.
 
 -   Significance level, $\alpha=5\%$.
 
@@ -99,57 +101,22 @@ Is the mean sepal length different from the expected average of 5.8 cm?
 
 -   The variance is unknown.
 
--   $n>30$; large sample.
+-   Data is not normally distributed.
 
 ### Results and Interpretation
 
-The histogram and test statistics is shown on @fig-test. Based on the histogram and the *p*-value being greater than 5% (*p*-value = 0.52), we do not reject the null hypothesis. There is no sufficient evidence that the mean sepal length is different from 5.8 cm.
+The histogram and test statistics is shown on @fig-stats. Based on the histogram and the *p*-value being greater than 5% (*p*-value = 0.54), we do not reject the null hypothesis. There is no sufficient evidence that the mean weight is different from 120 gm.
 
 ```{r}
-#| label: fig-test
+#| label: fig-stats
 #| fig-cap: Histogram and test statistics.
 
 gghistostats( # create figure
-  data = iris, # the data
-  x = Sepal.Length, # variable of interest
+  data = ChickWeight, # the data
+  x = weight, # variable of interest
   type = "parametric", # for student's t-test
-  test.value = 5.8, # default value is 0
-  xlab = "sepal length" # label of x-axis
+  test.value = 120, # default value is 0
+  xlab = "weight" # label of x-axis
 ) +
   labs(caption = NULL) # remove caption
 ```
-
-## One-Sided
-
-### Research Question
-
-Is the mean sepal length greater than the expected average of 5.7 cm?
-
-### Hypothesis and Test Statistics
-
--   $H_0:\mu=5.7$; the mean sepal length is equal to 5.7 cm.
-
--   $H_a:\mu>5.7$; the mean sepal length is greater than 5.7 cm.
-
--   Significance level, $\alpha=5\%$.
-
--   **one sample t-test**
-
--   The variance is unknown.
-
--   $n>30$; large sample.
-
-### Results and Interpretation
-
-```{r}
-#| label: test-os
-
-t.test(
-  iris$Sepal.Length, # selecting sepal length
-  mu = 5.7, # hypothesized value of the mean in the population
-  alternative = "greater" # other options: "two.sided" or "less"
-)
-```
-
-The test statistics is shown above. Based on the results and the *p*-value being lesser than 5% (*p*-value = 0.02), we reject the null hypothesis. There is sufficient evidence that the mean sepal length is greater than the expected average of 5.7 cm.
-:::

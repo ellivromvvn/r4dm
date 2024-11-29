@@ -1,5 +1,5 @@
 ---
-title: "The Iris Dataset"
+title: "One Variable: Quantitative"
 author: Orville D. Hombrebueno
 date: today
 format:
@@ -15,8 +15,6 @@ cache: true
 
 # The Data
 
-
-
 ```{r}
 #| label: preliminaries
 #| warning: false
@@ -29,6 +27,7 @@ library(knitr)
 library(gtsummary)
 library(ggstatsplot)
 library(downlit)
+library(broom)
 
 # load data
 data(iris)
@@ -51,7 +50,7 @@ iris |> # call the data
   head() |> # get the first six rows of the data
   kable( # create a table
     col.names = c( # change the column names
-      "Chick Weight",
+      "Sepal Length",
       "Sepal Width",
       "Petal Length",
       "Petal Width",
@@ -83,6 +82,24 @@ iris |> # call the data
   )
 ```
 
+A visualization of the sepal length is shown in @fig-viz.
+
+```{r}
+#| label: fig-viz
+#| fig-cap: Histogram with mean line.
+#| fig-height: 3
+
+mean_value <- mean(iris$Sepal.Length)
+
+iris |>
+  ggplot(aes(x = Sepal.Length)) +
+  geom_histogram(binwidth = .3, fill = "skyblue", color = "black") +
+  geom_vline(aes(xintercept = mean_value), color = "red", linetype = "dashed") +
+  labs(x = "Sepal Length", y = "Count") +
+  theme_minimal()
+```
+
+
 # Hypothesis Testing
 
 ::: panel-tabset
@@ -108,11 +125,12 @@ Is the mean sepal length different from the expected average of 5.8 cm?
 
 ### Results and Interpretation
 
-The histogram and test statistics is shown on @fig-test. Based on the histogram and the *p*-value being greater than 5% (*p*-value = 0.52), we do not reject the null hypothesis. There is no sufficient evidence that the mean sepal length is different from 5.8 cm.
+The histogram and test statistics is shown on @fig-test. 
 
 ```{r}
 #| label: fig-test
 #| fig-cap: Histogram and test statistics.
+#| fig-height: 3
 
 gghistostats( # create figure
   data = iris, # the data
@@ -123,6 +141,8 @@ gghistostats( # create figure
 ) +
   labs(caption = NULL) # remove caption
 ```
+
+Based on the histogram and the *p*-value being greater than 5% (*p*-value = 0.52), we do not reject the null hypothesis. There is no sufficient evidence that the mean sepal length is different from 5.8 cm.
 
 ## One-Sided
 
@@ -146,15 +166,22 @@ Is the mean sepal length greater than the expected average of 5.7 cm?
 
 ### Results and Interpretation
 
+The test statistics is shown in @tbl-stats-os.
+
 ```{r}
-#| label: test-os
+#| label: tbl-stats-os
+#| tbl-cap: Test statistics.
 
 t.test(
   iris$Sepal.Length, # selecting sepal length
   mu = 5.7, # hypothesized value of the mean in the population
   alternative = "greater" # other options: "two.sided" or "less"
-)
+) |>
+  tidy() |>
+  select(estimate, statistic, p.value, method, alternative) |>
+  mutate(across(where(is.numeric), ~ round(.x, 2))) |>
+  kable()
 ```
 
-The test statistics is shown above. Based on the results and the *p*-value being lesser than 5% (*p*-value = 0.02), we reject the null hypothesis. There is sufficient evidence that the mean sepal length is greater than the expected average of 5.7 cm.
+Based on the results and the *p*-value being lesser than 5% (*p*-value = 0.02), we reject the null hypothesis. There is sufficient evidence that the mean sepal length is greater than the expected average of 5.7 cm.
 :::
