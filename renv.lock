@@ -184,7 +184,7 @@
     },
     "Rmpfr": {
       "Package": "Rmpfr",
-      "Version": "0.9-5",
+      "Version": "1.0-0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -194,7 +194,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "77c83b84e1dafd6709f5d6a4d786039f"
+      "Hash": "e31a4946b49871ce9be6ee85114314b6"
     },
     "SparseM": {
       "Package": "SparseM",
@@ -381,7 +381,7 @@
     },
     "boot": {
       "Package": "boot",
-      "Version": "1.3-30",
+      "Version": "1.3-31",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -389,7 +389,7 @@
         "graphics",
         "stats"
       ],
-      "Hash": "96abeed416a286d4a0f52e550b612343"
+      "Hash": "de2a4646c18661d6a0a08ec67f40b7ed"
     },
     "brio": {
       "Package": "brio",
@@ -504,7 +504,7 @@
     },
     "cards": {
       "Package": "cards",
-      "Version": "0.3.0",
+      "Version": "0.4.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -516,7 +516,7 @@
         "tidyr",
         "tidyselect"
       ],
-      "Hash": "2147e8448f4eb87197520fc1710855c7"
+      "Hash": "2cd0d1966092de416f9b7fa1e88b6132"
     },
     "cellranger": {
       "Package": "cellranger",
@@ -660,13 +660,13 @@
     },
     "curl": {
       "Package": "curl",
-      "Version": "5.2.3",
+      "Version": "6.0.1",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Requirements": [
         "R"
       ],
-      "Hash": "d91263322a58af798f6cf3b13fd56dde"
+      "Hash": "e8ba62486230951fcd2b881c5be23f96"
     },
     "data.table": {
       "Package": "data.table",
@@ -910,7 +910,7 @@
     },
     "fontawesome": {
       "Package": "fontawesome",
-      "Version": "0.5.2",
+      "Version": "0.5.3",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -918,7 +918,7 @@
         "htmltools",
         "rlang"
       ],
-      "Hash": "c2efdd5f0bcd1ea861c2d4e2a883a67d"
+      "Hash": "bd1297f9b5b1fc1372d19e2c4cd82215"
     },
     "forcats": {
       "Package": "forcats",
@@ -1350,7 +1350,7 @@
     },
     "insight": {
       "Package": "insight",
-      "Version": "0.20.5",
+      "Version": "1.0.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1359,7 +1359,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "856341c90b80b78090cf2d68862102bd"
+      "Hash": "bee0c3abb5eea6c4170ea2a7c334893f"
     },
     "isoband": {
       "Package": "isoband",
@@ -1417,9 +1417,9 @@
     },
     "knitr": {
       "Package": "knitr",
-      "Version": "1.48",
+      "Version": "1.49",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Requirements": [
         "R",
         "evaluate",
@@ -1429,7 +1429,7 @@
         "xfun",
         "yaml"
       ],
-      "Hash": "acf380f300c721da9fde7df115a5f86f"
+      "Hash": "9fcb189926d93c636dea94fbe4f44480"
     },
     "labeling": {
       "Package": "labeling",
@@ -1727,7 +1727,7 @@
     },
     "parameters": {
       "Package": "parameters",
-      "Version": "0.23.0",
+      "Version": "0.24.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1740,7 +1740,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "518970426f8042a2b27c3415da881674"
+      "Hash": "42e4417823caf935fcc47a88ad4706e7"
     },
     "patchwork": {
       "Package": "patchwork",
@@ -1921,7 +1921,7 @@
     },
     "quantreg": {
       "Package": "quantreg",
-      "Version": "5.99",
+      "Version": "5.99.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1935,7 +1935,7 @@
         "stats",
         "survival"
       ],
-      "Hash": "c6e207b874494a7ac4d52f02dcd7d3af"
+      "Hash": "c48844cd7961de506a1b4d22b2e082c7"
     },
     "ragg": {
       "Package": "ragg",
@@ -2040,13 +2040,13 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "1.0.10",
+      "Version": "1.0.11",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Requirements": [
         "utils"
       ],
-      "Hash": "d0387d5687ec933dd7587efd4cfa2d85"
+      "Hash": "47623f66b4e80b3b0587bc5d7b309888"
     },
     "reprex": {
       "Package": "reprex",
@@ -2264,7 +2264,7 @@
     },
     "survival": {
       "Package": "survival",
-      "Version": "3.6-4",
+      "Version": "3.7-0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -2276,7 +2276,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "e6e3071f471513e4b85f98ca041303c7"
+      "Hash": "5aaa9cbaf4aba20f8e06fdea1850a398"
     },
     "sys": {
       "Package": "sys",
