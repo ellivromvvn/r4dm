@@ -90,7 +90,6 @@ ggplot(titanic, aes(x=Survived)) +
   theme_minimal()
 ```
 
-
 # Hypothesis Testing
 
 ::: panel-tabset
@@ -114,11 +113,12 @@ Do the passengers have a 50/50 chance of surviving?
 
 ### Results and Interpretation
 
-The pie chart and test statistics is shown on @fig-test. Based on the pie chart and the *p*-value being lesser than 5% (*p*-value = .001), we reject the null hypothesis. There is a strong evidence that the proportion of surviving is different among passengers. This may be influenced by certain factors like class, gender, or age?
+The pie chart and test statistics is shown on @fig-test.
 
 ```{r}
 #| label: fig-test
 #| fig-cap: Pie chart and test statistics.
+#| fig-height: 3
 
 ggpiestats(
   data = titanic,
@@ -127,6 +127,8 @@ ggpiestats(
   legend.title = "Survived?"
 )
 ```
+
+Based on the pie chart and the *p*-value being lesser than 5% (*p*-value = .001), we reject the null hypothesis. There is a strong evidence that the proportion of surviving is different among passengers. This may be influenced by certain factors like class, gender, or age?
 
 ## One-Sided
 

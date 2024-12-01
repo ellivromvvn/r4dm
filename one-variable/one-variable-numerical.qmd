@@ -99,7 +99,6 @@ iris |>
   theme_minimal()
 ```
 
-
 # Hypothesis Testing
 
 ::: panel-tabset
@@ -125,7 +124,7 @@ Is the mean sepal length different from the expected average of 5.8 cm?
 
 ### Results and Interpretation
 
-The histogram and test statistics is shown on @fig-test. 
+The histogram and test statistics is shown on @fig-test.
 
 ```{r}
 #| label: fig-test

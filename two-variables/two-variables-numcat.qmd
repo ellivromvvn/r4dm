@@ -108,18 +108,19 @@ Is there a significant difference in miles/(US) gallon when grouped according to
 
 ### Hypothesis and Test Statistics
 
--   $H_0:\mu_A=\mu_M$; the mean miles/(US) is the same when grouped according to transmission.
+-   $H_0:\mu_A=\mu_M$; the mean miles/(US) gallon is the same when grouped according to transmission.
 
--   $H_a:\rho\ne0$; the mean miles/(US) is different when grouped according to transmission.
+-   $H_a:\mu_A\ne\mu_M$; the mean miles/(US) gallon is different when grouped according to transmission.
 
 -   Significance level, $\alpha=5\%$.
 
 -   **Student's t-test for 2 independent samples**
 
+- Unknown and unequal variance (see @tbl-levene).
+
 ```{r}
-#| label: levene
-#| echo: false
-#| eval: false
+#| label: tbl-levene
+#| tbl-cap: Levene's test for homogeneity of variance.
 
 mtcars_levene <- mtcars |> # call the data
   mutate(
@@ -129,22 +130,42 @@ mtcars_levene <- mtcars |> # call the data
     )
   )
 
-leveneTest(mpg ~ am, data = mtcars_levene)
+leveneTest(mpg ~ am, data = mtcars_levene, center =  mean) |>
+  tidy() |>
+  mutate(across(where(is.numeric), ~ round(.x, 2))) |>
+  kable()
 ```
-- Unknown and unequal variance.
+
+- Both samples follow a normal distribution (see @tbl-shapiro).
 
 ```{r}
-#| label: shapiro
-#| echo: false
-#| eval: false
+#| label: tbl-shapiro
+#| tbl-cap: Shapiro-Wilk normality test.
 
-mtcars_shapiro <- mtcars_levene |>
+mtcars_shapiro_m <- mtcars_levene |>
+  filter(am == "Manual") |>
+  select(mpg)
+
+shapiro_m <- shapiro.test(mtcars_shapiro_m$mpg) |>
+  tidy() |>
+  mutate(across(where(is.numeric), ~ round(.x, 2)))
+
+mtcars_shapiro_a <- mtcars_levene |>
   filter(am == "Automatic") |>
   select(mpg)
 
-shapiro.test(mtcars_shapiro$mpg)
+shapiro_a <- shapiro.test(mtcars_shapiro_a$mpg) |>
+  tidy() |>
+  mutate(across(where(is.numeric), ~ round(.x, 2)))
+
+bind_rows(shapiro_a, shapiro_m) |>
+  mutate(
+    transmission = c("Automatic", "Manual")
+  ) |>
+  relocate(transmission, .before =1) |>
+  kable()
+
 ```
-- Both samples follow a normal distribution
 
 ### Results and Interpretation
 
@@ -152,7 +173,7 @@ The plot and test statistics is shown on @fig-test.
 
 ```{r}
 #| label: fig-test
-#| fig-cap: Scatter plot and test statistics.
+#| fig-cap: Plot and test statistics.
 #| fig-height: 3
 #| warning: false
 #| error: false
@@ -176,6 +197,4 @@ mtcars |> # call the data
   labs(caption = NULL) # remove caption
 ```
 
-Based on the scatter plot and the *p*-value being less than 5% (*p*-value = .001), we reject the null hypothesis. There is strong evidence of a linear relationship between gross horsepower and miles/(US) gallon. The correlation ($\rho=-0.78$) suggests a moderate negative relationship between the two variables. Increased gross horsepower is moderately associated with decreased miles/(US) gallon.
-
-
+Based on the plot and the *p*-value being less than 5% (*p*-value = .001), we reject the null hypothesis. There is strong evidence that the mean miles/(US) gallon is different when grouped according to transmission. Cars with manual transmission tend to have a higher mean miles/(US) gallon. Thus, manual cars are more fuel efficient compared to automatic cars.
