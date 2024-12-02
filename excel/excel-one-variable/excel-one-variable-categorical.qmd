@@ -1,0 +1,175 @@
+---
+title: "One Variable: Qualitative"
+author: Orville D. Hombrebueno
+date: today
+format: 
+  docx:
+    reference-doc: excel-report-template.docx
+editor: visual
+toc: true
+cache: true
+execute: 
+  echo: false
+---
+
+# The Data
+
+```{r}
+#| label: preliminaries
+#| warning: false
+#| message: false
+
+# load packages
+library(tidyverse) 
+library(knitr)
+library(gtsummary)
+library(ggstatsplot)
+library(downlit)
+library(broom)
+
+# load the data
+titanic <- ggstatsplot::Titanic_full |>
+  mutate(
+    Class = factor(Class)
+  )
+```
+
+## The Titanic Data Set
+
+The `Titanic_full` data set of the [{ggstatsplot}]{style="font-family:monospace;"} package is a data frame with 2201 rows and 5 variables.
+
+-   id. Dummy identity number for each person.
+
+-   Class. 1st, 2nd, 3rd, Crew.
+
+-   Sex. Male, Female.
+
+-   Age. Child, Adult.
+
+-   Survived. No, Yes.
+
+This data set provides information on the fate of passengers on the fatal maiden voyage of the ocean liner Titanic, summarized according to economic status (class), sex, age and survival.
+
+The first 6 rows of the titanic data set are shown in @tbl-titanic.
+
+```{r}
+#| label: tbl-titanic
+#| warning: false
+#| message: false
+#| tbl-cap: "The first 6 observations of the data set."
+
+titanic |>
+  head() |> # getting the first six rows of the data
+  kable() # creating a table
+```
+
+## Descriptive Statistics
+
+The frequency distribution of the variables in the data set is shown in @tbl-summary. Most of the passengers are crew members, male, and adult. Only 32% of the passengers survived.
+
+```{r}
+#| label: tbl-summary
+#| tbl-cap: "Summary statistics of the data set."
+#| message: false
+
+titanic |> 
+  tbl_summary(
+    include = c(Class, Sex, Age, Survived)
+  )
+```
+
+A visualization of the `Survived` variable is shown in @fig-viz.
+
+```{r}
+#| label: fig-viz
+#| fig-cap: Bar chart
+#| fig-height: 3
+
+ggplot(titanic, aes(x=Survived)) + 
+  geom_bar() +
+  theme_minimal()
+```
+
+# Hypothesis Testing
+
+::: panel-tabset \## Two-Sided
+
+### Research Question
+
+Do the passengers have a 50/50 chance of surviving?
+
+### Hypothesis and Test Statistics
+
+-   $H_0:p=50\%$; proportions of surviving are equal.
+
+-   $H_a:p\ne50\%$; proportions of surviving are different.
+
+-   Significance level, $\alpha=5\%$.
+
+-   **one proportion z-test**
+
+-   Success-failure condition is met.
+
+### Results and Interpretation
+
+The test statistics is shown on @tbl-stats-ts.
+
+```{r}
+#| label: tbl-stats-ts
+#| tbl-cap: Test statistics.
+
+prop.test(
+  x = 711, # number of successes
+  n = 2201, # total number of trials (711 + 1490)
+  p = 0.35,
+  alternative = "two.sided"
+) |>
+  tidy() |>
+  select(estimate, statistic, p.value, method, alternative) |>
+  mutate(across(where(is.numeric), ~ round(.x, 2))) |>
+  kable()
+```
+
+Based on the *p*-value being less than 5% (*p*-value = .001), we reject the null hypothesis. There is a strong evidence that the proportion of surviving is different among passengers. This may be influenced by certain factors like class, gender, or age?
+
+\pagebreak
+
+## One-Sided
+
+### Research Question
+
+Is the survival rate less than the expected survival rate of 35%?
+
+### Hypothesis and Test Statistics
+
+-   $H_0:p=35\%$; the survival rate is equal to the expected survival rate of 35%.
+
+-   $H_a:p<35\%$; the survival rate is less than the expected survival rate of 35%.
+
+-   Significance level, $\alpha=5\%$.
+
+-   **one proportion Z-test**
+
+-   Success-failure condition is met.
+
+### Results and Interpretation
+
+The test statistics is shown in @tbl-stats-os.
+
+```{r}
+#| label: tbl-stats-os
+#| tbl-cap: Test statistics.
+
+prop.test(
+  x = 711, # number of successes
+  n = 2201, # total number of trials (711 + 1490)
+  p = 0.35,
+  alternative = "less"
+) |>
+  tidy() |>
+  select(estimate, statistic, p.value, method, alternative) |>
+  mutate(across(where(is.numeric), ~ round(.x, 2))) |>
+  kable()
+```
+
+Based on the results and the *p*-value being lesser than 5% (*p*-value = 0.004), we reject the null hypothesis. There is strong evidence that the survival rate is less than the expected survival rate of 35%.

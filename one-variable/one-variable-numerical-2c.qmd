@@ -2,14 +2,15 @@
 title: "One Variable: Quantitative"
 author: Orville D. Hombrebueno
 date: today
-format: 
-  docx:
-    reference-doc: excel-report-template.docx
+format:
+  html:
+    embed-resources: true
+    smooth-scroll: true
 editor: visual
 toc: true
+code-link: true
+code-fold: true
 cache: true
-execute: 
-  echo: false
 ---
 
 # The Data
@@ -36,7 +37,7 @@ data(iris)
 
 This famous (Fisher's or Anderson's) [iris](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x) data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
 
-The first 6 rows of the iris data set are shown in @tbl-iris.
+The first 6 rows of the iris data set is shown in @tbl-iris.
 
 ```{r}
 #| label: tbl-iris
@@ -81,20 +82,36 @@ iris |> # call the data
   )
 ```
 
+A visualization of the sepal length is shown in @fig-viz.
+
+```{r}
+#| label: fig-viz
+#| fig-cap: Histogram with mean line.
+#| fig-height: 3
+
+mean_value <- mean(iris$Sepal.Length) # computed the mean sepal length of iris
+
+iris |> # called the data
+  ggplot(aes(x = Sepal.Length)) + # defining x y variables
+  geom_histogram(binwidth = .3, fill = "skyblue", color = "black") +
+  geom_vline(aes(xintercept = mean_value), color = "red", linetype = "dashed") +
+  labs(x = "Sepal Length", y = "Count") +
+  theme_minimal()
+```
+
 # Hypothesis Testing
 
 ::: panel-tabset
-## Two-Sided
 
-### Research Question
+## Research Question 1
 
-Is the mean sepal length different from the expected average of 5.8 cm?
+1.  Is the mean sepal length different from the expected average of 5.8 cm?
 
 ### Hypothesis and Test Statistics
 
--   $H_0:\mu=5.8$; the mean sepal length is equal to 5.8 cm.
+-   $H_0:\mu=5.9$; the mean sepal length is equal to 5.9 cm.
 
--   $H_a:\mu\ne5.8$; the mean sepal length is different from 5.8 cm.
+-   $H_a:\mu\ne5.9$; the mean sepal length is different from 5.9 cm.
 
 -   Significance level, $\alpha=5\%$.
 
@@ -106,30 +123,26 @@ Is the mean sepal length different from the expected average of 5.8 cm?
 
 ### Results and Interpretation
 
-The test statistics is shown on @tbl-stats-ts. 
+The histogram and test statistics is shown on @fig-test.
 
 ```{r}
-#| label: tbl-stats-ts
-#| tbl-cap: Test statistics.
+#| label: fig-test
+#| fig-cap: Histogram and test statistics.
+#| fig-height: 3
 
-t.test(
-  iris$Sepal.Length, # selecting sepal length
-  mu = 5.8, # hypothesized value of the mean in the population
-  alternative = "two.sided" # other options: "two.sided" or "less"
-) |>
-  tidy() |>
-  select(estimate, statistic, p.value, method, alternative) |>
-  mutate(across(where(is.numeric), ~ round(.x, 2))) |>
-  kable()
+gghistostats( # create figure
+  data = iris, # the data
+  x = Sepal.Length, # variable of interest
+  type = "parametric", # for student's t-test
+  test.value = 5.8, # default value is 0
+  xlab = "sepal length" # label of x-axis
+) +
+  labs(caption = NULL) # remove caption
 ```
 
-Based on the *p*-value being greater than 5% (*p*-value = 0.52), we do not reject the null hypothesis. There is no sufficient evidence that the mean sepal length is different from 5.8 cm.
+Based on the histogram and the *p*-value being greater than 5% (*p*-value = 0.52), we do not reject the null hypothesis. There is no sufficient evidence that the mean sepal length is different from 5.8 cm.
 
-\pagebreak
-
-## One-Sided
-
-### Research Question
+## Research Question 2
 
 Is the mean sepal length greater than the expected average of 5.7 cm?
 

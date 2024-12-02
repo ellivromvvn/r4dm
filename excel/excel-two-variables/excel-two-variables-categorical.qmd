@@ -2,14 +2,14 @@
 title: "Two Variables: Qualitative"
 author: Orville D. Hombrebueno
 date: today
-format:
-  html:
-    embed-resources: true
+format: 
+  docx:
+    reference-doc: excel-report-template.docx
 editor: visual
 toc: true
-code-link: true
-code-fold: true
 cache: true
+execute: 
+  echo: false
 ---
 
 # The Data
@@ -36,7 +36,7 @@ titanic <- ggstatsplot::Titanic_full |>
 
 ## The Titanic Data Set
 
-The `Titanic_full` data set of the [{ggstatsplot}]{style="font-family:monospace;"} package is a data frame with 2201 rows and 5 variables.
+The titanic data set is a data frame with 2201 rows and 5 variables.
 
 -   `id` Dummy identity number for each person.
 
@@ -50,7 +50,7 @@ The `Titanic_full` data set of the [{ggstatsplot}]{style="font-family:monospace;
 
 This data set provides information on the fate of passengers on the fatal maiden voyage of the ocean liner Titanic, summarized according to economic status (class), sex, age and survival.
 
-The first 6 rows of the titanic data set is shown in @tbl-titanic.
+The first 6 rows of the titanic data set are shown in @tbl-titanic.
 
 ```{r}
 #| label: tbl-titanic
@@ -93,7 +93,7 @@ Does a passenger's sex affect their survival status?
 
 -   Significance level, $\alpha=5\%$.
 
--   **Pearson's** $\chi^2$-test of independence
+-   **Pearson's $\chi^2$-test of independence**
 
 -   Independence.
 
@@ -125,20 +125,19 @@ expected |>
 
 ## Results and Interpretation
 
-The bar chart and test statistics are shown on @fig-test.
+The test statistics is shown on @tbl-stats.
 
 ```{r}
-#| label: fig-test
-#| fig-cap: Pie chart and test statistics.
-#| fig-height: 3
+#| label: tbl-stats
+#| tbl-cap: Test statistics.
 
-ggbarstats(
-  data = titanic,
-  x = Survived,
-  y = Sex,
-  bf.message = FALSE,
-  legend.title = "Survived?"
-)
+chi_test |>
+  tidy() |>
+  select(statistic, p.value, parameter, method) |>
+  rename(df = parameter) |>
+  mutate(across(where(is.numeric), ~ round(.x, 2))) |>
+  kable()
 ```
 
-Based on the bar chart and the *p*-value being lesser than 5% (*p*-value = .001), we reject the null hypothesis. There is a strong evidence that passenger's sex affects their survival status. Additionally, for both females and males, the survival rates were significantly different than 50% as indicated by a goodness of fit test for each gender.
+Based on the *p*-value being lesser than 5% (*p*-value = .001), we reject the null hypothesis. There is a strong evidence that passenger's sex affects their survival status.
+
