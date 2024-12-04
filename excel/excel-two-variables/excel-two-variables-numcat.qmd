@@ -106,11 +106,11 @@ A visualization of miles/(US) gallon when grouped according to transmission is s
 
 # Hypothesis Testing
 
-### Research Question
+## Research Question
 
 Is there a significant difference in miles/(US) gallon when grouped according to transmission?
 
-### Hypothesis and Test Statistics
+## Hypothesis and Test Statistics
 
 -   $H_0:\mu_A=\mu_M$; the mean miles/(US) gallon is the same when grouped according to transmission.
 
@@ -176,7 +176,7 @@ bind_rows(jb_a, jb_m) |>
   kable()
 ```
 
-### Results and Interpretation
+## Results and Interpretation
 
 The test statistics is shown in @tbl-stats.
 

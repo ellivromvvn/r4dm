@@ -1,15 +1,15 @@
 ---
-title: "Two Variables: Both Quantitative"
+title: "Two Variables: Quantitative"
 author: Orville D. Hombrebueno
 date: today
-format:
-  html:
-    embed-resources: true
+format: 
+  docx:
+    reference-doc: excel-report-template.docx
 editor: visual
 toc: true
-code-link: true
-code-fold: true
 cache: true
+execute: 
+  echo: false
 ---
 
 # The Data
@@ -91,6 +91,10 @@ mtcars |> # call the data
   )
 ```
 
+A visualization of miles/(US) gallon and gross horsepower is shown in @fig-viz.
+
+![Scatterplot of `mpg` and `hp`.](images/viz-num.png){#fig-viz}
+
 # Hypothesis Testing
 
 ## Research Question
@@ -111,23 +115,22 @@ Is there a significant relationship between gross horsepower and miles/(US) gall
 
 ## Results and Interpretation
 
-The scatter plot and test statistics is shown on @fig-test.
+The test statistics is shown on @tbl-stats.
 
 ```{r}
-#| label: fig-test
-#| fig-cap: Scatter plot and test statistics.
-#| fig-height: 3
-#| warning: false
-#| error: false
-#| message: false
+#| label: tbl-stats
+#| tbl-cap: Test statistics.
 
-ggscatterstats(
-  mtcars, hp, mpg,
-  xlab = "Gross Horsepower",
-  ylab = "Miles/(US) Gallon",
-  type = "parametric"
-) +
-  labs(caption = NULL) # remove caption
+cor.test(mtcars$mpg, mtcars$hp, method = "pearson") |>
+  tidy() |>
+  select(
+    estimate,
+    statistic,
+    p.value,
+    method
+  ) |>
+  mutate(across(where(is.numeric), ~ round(.x, 2))) |>
+  kable()
 ```
 
-Based on the scatter plot and the *p*-value being less than 5% (*p*-value = .001), we reject the null hypothesis. There is strong evidence of a linear relationship between gross horsepower and miles/(US) gallon. The correlation ($\rho=-0.78$) suggests a moderate negative relationship between the two variables. Increased gross horsepower is moderately associated with decreased miles/(US) gallon.
+Based on the *p*-value being less than 5% (*p*-value = .001), we reject the null hypothesis. There is strong evidence of a linear relationship between gross horsepower and miles/(US) gallon. The correlation ($\rho=-0.78$) suggests a moderate negative relationship between the two variables. Increased gross horsepower is moderately associated with decreased miles/(US) gallon.
