@@ -81,6 +81,28 @@ iris |> # call the data
   )
 ```
 
+A visualization of sepal length is shown in @fig-viz.
+
+```{r}
+#| label: fig-viz
+#| fig-cap: Histogram of sepal length.
+#| fig-height: 3
+
+iris |>
+ggplot(aes(x = Sepal.Length)) +
+  geom_histogram(
+    binwidth = 0.5,
+    fill = "blue",
+    color = "white"
+  ) +
+  labs( 
+    x = "Sepal Length", 
+    y = "Frequency"
+  ) +
+  theme_minimal()
+
+```
+
 # Hypothesis Testing
 
 ::: panel-tabset

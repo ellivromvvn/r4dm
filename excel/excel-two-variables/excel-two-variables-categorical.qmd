@@ -65,7 +65,7 @@ titanic |>
 
 ## Descriptive Statistics
 
-The frequency distribution of `Survived` when grouped according to `Sex` is shown in @tbl-summary. Most of the passengers are male. The majority of female passengers survived, whereas the majority of male passengers did not.
+The frequency distribution of `Survived` when grouped according to `Sex` is shown in @tbl-summary. Most of the passengers are male. The majority of female passengers survived, whereas the majority of male passengers did not. The number of survived passengers for both female and male are close, that is 344 and 367 respectively.
 
 ```{r}
 #| label: tbl-summary
@@ -77,6 +77,25 @@ titanic |>
     by = Sex,
     include = Survived
   )
+```
+
+A stacked bar graph of Survived and Sex is shown in @fig-viz.
+
+```{r}
+#| label: fig-viz
+#| fig-cap: Survival by Sex
+#| fig-height: 3
+
+titanic |>
+  count(Sex, Survived) |>  # Count occurrences for each combination
+  ggplot(aes(x = Sex, y = n, fill = Survived)) +  # Define aesthetics
+  geom_bar(stat = "identity", position = "stack") +  # Stacked bars
+  labs(
+    x = "Sex",
+    y = "Count",
+    fill = "Survived"
+  ) +
+  theme_minimal()
 ```
 
 # Hypothesis Testing
