@@ -112,7 +112,7 @@ Does a passenger's sex affect their survival status?
 
 -   Significance level, $\alpha=5\%$.
 
--   **Pearson's $\chi^2$-test of independence**
+-   **Pearson's** $\chi^2$-test of independence
 
 -   Independence.
 
@@ -159,4 +159,3 @@ chi_test |>
 ```
 
 Based on the *p*-value being lesser than 5% (*p*-value = .001), we reject the null hypothesis. There is a strong evidence that passenger's sex affects their survival status.
-

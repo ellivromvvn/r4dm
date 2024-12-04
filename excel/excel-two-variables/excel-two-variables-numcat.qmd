@@ -1,15 +1,15 @@
 ---
-title: "Two Variables: Quantitative and Qualitative"
+title: "Two Variables: Qualitative and Quantitative"
 author: Orville D. Hombrebueno
 date: today
-format:
-  html:
-    embed-resources: true
+format: 
+  docx:
+    reference-doc: excel-report-template.docx
 editor: visual
 toc: true
-code-link: true
-code-fold: true
 cache: true
+execute: 
+  echo: false
 ---
 
 # The Data
@@ -28,6 +28,7 @@ library(ggstatsplot)
 library(downlit)
 library(broom)
 library(car)
+library(tseries)
 
 # load data
 data(mtcars)
@@ -96,9 +97,12 @@ mtcars |> # call the data
     include = c(mpg, am), # select variables
     statistic = all_continuous() ~ "{mean} ± {sd} ({min} - {max})", # descriptive statistics
     digits = all_continuous() ~ 2 # no. of digits (rounding)
-  ) |>
-  add_overall()
+  )
 ```
+
+A visualization of miles/(US) gallon when grouped according to transmission is shown in @fig-viz.
+
+![Box plot of `mpg` by `am`.](images/viz-numcat.png){#fig-viz}
 
 # Hypothesis Testing
 
@@ -136,62 +140,69 @@ leveneTest(mpg ~ am, data = mtcars_levene, center =  mean) |>
   kable()
 ```
 
--   Both samples follow a normal distribution (see @tbl-shapiro).
+-   Both samples follow a normal distribution (see @tbl-jb).
 
 ```{r}
-#| label: tbl-shapiro
-#| tbl-cap: Shapiro-Wilk normality test.
+#| label: tbl-jb
+#| tbl-cap: Jarque-Bera normality test.
 
-mtcars_shapiro_m <- mtcars_levene |>
+mtcars_jb_m <- mtcars_levene |>
   filter(am == "Manual") |>
   select(mpg)
 
-shapiro_m <- shapiro.test(mtcars_shapiro_m$mpg) |>
+jb_m <- jarque.bera.test(mtcars_jb_m$mpg) |>
   tidy() |>
   mutate(across(where(is.numeric), ~ round(.x, 2)))
 
-mtcars_shapiro_a <- mtcars_levene |>
+mtcars_jb_a <- mtcars_levene |>
   filter(am == "Automatic") |>
   select(mpg)
 
-shapiro_a <- shapiro.test(mtcars_shapiro_a$mpg) |>
+jb_a <- jarque.bera.test(mtcars_jb_a$mpg) |>
   tidy() |>
   mutate(across(where(is.numeric), ~ round(.x, 2)))
 
-bind_rows(shapiro_a, shapiro_m) |>
+bind_rows(jb_a, jb_m) |>
   mutate(
     transmission = c("Automatic", "Manual")
   ) |>
   relocate(transmission, .before =1) |>
+  select(
+    transmission,
+    statistic,
+    p.value,
+    method
+  ) |>
   kable()
-
 ```
 
 ### Results and Interpretation
 
-The plot and test statistics is shown on @fig-stats.
+The test statistics is shown in @tbl-stats.
 
 ```{r}
-#| label: fig-stats
-#| fig-cap: Comparison of `mpg` by `am`.
-#| fig-height: 3
+#| label: tbl-stats
+#| tbl-cap: Test statistics.
 
-mtcars |> # call the data
-  mutate(
-    am = factor(
-      am, levels = c(0, 1),
-      labels = c("Automatic", "Manual")
-    )
+mpg_am <- mtcars |>
+  select(mpg, am)
+
+t.test(mpg ~ am, data = mpg_am, var.equal = FALSE) |>
+  tidy() |>
+  select(
+    estimate1,
+    estimate2,
+    statistic,
+    p.value,
+    method,
+    alternative
   ) |>
-  ggbetweenstats(
-    x = am,
-    y = mpg,
-    plot.type = "box", # for boxplot
-    type = "parametric", # for student's t-test
-    var.equal = FALSE, # equal variances
-    centrality.plotting = TRUE # remove mean
-  ) +
-  labs(caption = NULL) # remove caption
+  rename(
+    automatic = estimate1,
+    manual = estimate2
+  ) |>
+  mutate(across(where(is.numeric), ~ round(.x, 2))) |>
+  kable()
 ```
 
-Based on the plot and the *p*-value being less than 5% (*p*-value = .001), we reject the null hypothesis. There is strong evidence that the mean miles/(US) gallon is different when grouped according to transmission. Cars with manual transmission tend to have a higher mean miles/(US) gallon. Thus, manual cars are more fuel efficient compared to automatic cars.
+Based the *p*-value being less than 5% (*p*-value = .001), we reject the null hypothesis. There is strong evidence that the mean miles/(US) gallon is different when grouped according to transmission. Cars with manual transmission tend to have a higher mean miles/(US) gallon. Thus, manual cars are more fuel efficient compared to automatic cars.
