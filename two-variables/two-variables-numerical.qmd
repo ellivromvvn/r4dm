@@ -76,7 +76,7 @@ mtcars |> # call the data
 
 ## Descriptive Statistics
 
-The mean, standard deviation, minimum, and maximum of `hp` and `mpg` in the `mtcars` data set are shown in @tbl-summary. There are a total of 32 observations.
+The mean, standard deviation, minimum, and maximum of `hp` and `mpg` in the `mtcars` data set are shown in @tbl-summary. There is a total of 32 observations.
 
 ```{r}
 #| label: tbl-summary

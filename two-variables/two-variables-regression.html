@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Orville D. Hombrebueno">
-<meta name="dcterms.date" content="2024-12-02">
+<meta name="dcterms.date" content="2024-12-04">
 <title>Two Variables: Linear Regression</title>
 <style>
 code{white-space: pre-wrap;}
@@ -3239,7 +3239,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 2, 2024</p>
+      <p class="date">December 4, 2024</p>
     </div>
   </div>
   
@@ -3282,7 +3282,7 @@ window.Quarto = {
 <li><p><code>gear</code> Number of forward gears</p></li>
 <li><p><code>carb</code> Number of carburetors</p></li>
 </ul>
-<p>The first 6 rows of the data set is shown in <a href="#tbl-mtcars" class="quarto-xref">Table 1</a></p>
+<p>The first 6 rows of the data set are shown in <a href="#tbl-mtcars" class="quarto-xref">Table 1</a></p>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="co"># call the data</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># get the first six rows of the data</span></span>
@@ -3414,7 +3414,7 @@ Table 1: The first 6 observations of the data set.
 </div>
 </div>
 </section><section id="descriptive-statistics" class="level2"><h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
-<p>The mean, standard deviation, minimum, and maximum of <code>mpg</code> and <code>wt</code> is shown in <a href="#tbl-summary" class="quarto-xref">Table 2</a>. There are a total of 32 observations.</p>
+<p>The mean, standard deviation, minimum, and maximum of <code>mpg</code> and <code>wt</code> are shown in <a href="#tbl-summary" class="quarto-xref">Table 2</a>. There is a total of 32 observations.</p>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="co"># call the data</span></span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_summary.html">tbl_summary</a></span><span class="op">(</span> <span class="co"># create a table</span></span>

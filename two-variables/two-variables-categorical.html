@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Orville D. Hombrebueno">
-<meta name="dcterms.date" content="2024-12-01">
+<meta name="dcterms.date" content="2024-12-04">
 <title>Two Variables: Qualitative</title>
 <style>
 code{white-space: pre-wrap;}
@@ -3246,7 +3246,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 1, 2024</p>
+      <p class="date">December 4, 2024</p>
     </div>
   </div>
   
@@ -3282,7 +3282,7 @@ window.Quarto = {
 <li><p><code>Survived</code> No, Yes.</p></li>
 </ul>
 <p>This data set provides information on the fate of passengers on the fatal maiden voyage of the ocean liner Titanic, summarized according to economic status (class), sex, age and survival.</p>
-<p>The first 6 rows of the titanic data set is shown in <a href="#tbl-titanic" class="quarto-xref">Table 1</a>.</p>
+<p>The first 6 rows of the titanic data set are shown in <a href="#tbl-titanic" class="quarto-xref">Table 1</a>.</p>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">titanic</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># getting the first six rows of the data</span></span>
@@ -3351,7 +3351,7 @@ Table 1: The first 6 observations of the data set.
 </div>
 </div>
 </section><section id="descriptive-statistics" class="level2"><h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
-<p>The frequency distribution of <code>Survived</code> when grouped according to <code>Sex</code> is shown in <a href="#tbl-summary" class="quarto-xref">Table 2</a>. Most of the passengers are male. The majority of female passengers survived, whereas the majority of male passengers did not.</p>
+<p>The frequency distribution of <code>Survived</code> when grouped according to <code>Sex</code> is shown in <a href="#tbl-summary" class="quarto-xref">Table 2</a>. Most of the passengers are male. The majority of female passengers survived, whereas the majority of male passengers did not. Nonetheless, the number of survived passengers for both female and male are close, that is 344 and 367 respectively.</p>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">titanic</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_summary.html">tbl_summary</a></span><span class="op">(</span></span>
@@ -3798,7 +3798,7 @@ height: 0px !important;
 <li><p><span class="math inline">\(H_0:p_{Survived}-p_{Sex}=0\)</span>; passenger’s sex does not affect their survival status.</p></li>
 <li><p><span class="math inline">\(H_a:p_{Survived}-p_{Sex}\ne0\)</span>; passenger’s sex affects their survival status.</p></li>
 <li><p>Significance level, <span class="math inline">\(\alpha=5\%\)</span>.</p></li>
-<li><p><strong>Pearson’s <span class="math inline">\(\chi^2\)</span>-test of independence</strong></p></li>
+<li><p><strong>Pearson’s</strong> <span class="math inline">\(\chi^2\)</span>-test of independence</p></li>
 <li><p>Independence.</p></li>
 <li><p>Expected counts: all expected counts are <span class="math inline">\(\ge5\)</span> (see <a href="#tbl-expected" class="quarto-xref">Table 3</a>).</p></li>
 </ul>
@@ -3851,7 +3851,7 @@ Table 3: Expected counts.
 </div>
 </div>
 </section><section id="results-and-interpretation" class="level2"><h2 class="anchored" data-anchor-id="results-and-interpretation">Results and Interpretation</h2>
-<p>The bar chart and test statistics is shown on <a href="#fig-test" class="quarto-xref">Figure 1</a>.</p>
+<p>The bar chart and test statistics are shown on <a href="#fig-test" class="quarto-xref">Figure 1</a>.</p>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">titanic</span>,</span>

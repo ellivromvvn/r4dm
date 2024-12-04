@@ -50,7 +50,7 @@ The `Titanic_full` data set of the [{ggstatsplot}]{style="font-family:monospace;
 
 This data set provides information on the fate of passengers on the fatal maiden voyage of the ocean liner Titanic, summarized according to economic status (class), sex, age and survival.
 
-The first 6 rows of the titanic data set is shown in @tbl-titanic.
+The first 6 rows of the titanic data set are shown in @tbl-titanic.
 
 ```{r}
 #| label: tbl-titanic
@@ -65,7 +65,7 @@ titanic |>
 
 ## Descriptive Statistics
 
-The frequency distribution of `Survived` when grouped according to `Sex` is shown in @tbl-summary. Most of the passengers are male. The majority of female passengers survived, whereas the majority of male passengers did not.
+The frequency distribution of `Survived` when grouped according to `Sex` is shown in @tbl-summary. Most of the passengers are male. The majority of female passengers survived, whereas the majority of male passengers did not. Nonetheless, the number of survived passengers for both female and male are close, that is 344 and 367 respectively.
 
 ```{r}
 #| label: tbl-summary

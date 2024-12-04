@@ -45,7 +45,7 @@ The `ChickWeight` data frame has 578 rows and 4 columns from an experiment on th
 
 -   Diet. a factor with levels 1, ..., 4 indicating which experimental diet the chick received.
 
-The first 6 rows of the ChickWeight data set is shown in @tbl-cw.
+The first 6 rows of the data set are shown in @tbl-cw.
 
 ```{r}
 #| label: tbl-cw
@@ -68,7 +68,7 @@ ChickWeight |> # call the data
 
 ## Descriptive Statistics
 
-The mean, standard deviation, minimum, and maximum of the data set by species is shown in @tbl-summary. There are a total of 150 observations; 50 observations per species.
+The mean, standard deviation, minimum, and maximum of `weight` and `Time` and the frequency distribution of `Diet` are shown in @tbl-summary. There is a total of 578 observations.
 
 ```{r}
 #| label: tbl-summary
@@ -83,7 +83,7 @@ ChickWeight |>
   )
 ```
 
-A visualization of the sepal length is shown in @fig-viz.
+A visualization of the `weight` is shown in @fig-viz.
 
 ```{r}
 #| label: fig-viz
@@ -96,7 +96,7 @@ ChickWeight |>
   ggplot(aes(x = weight)) +
   geom_histogram(binwidth = 20, fill = "skyblue", color = "black") +
   geom_vline(aes(xintercept = mean_value), color = "red", linetype = "dashed") +
-  labs(x = "Sepal Length", y = "Count") +
+  labs(x = "Weight (gm)", y = "Count") +
   theme_minimal()
 ```
 

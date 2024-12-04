@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Orville D. Hombrebueno">
-<meta name="dcterms.date" content="2024-12-02">
+<meta name="dcterms.date" content="2024-12-04">
 <title>One Variable: Quantitative</title>
 <style>
 code{white-space: pre-wrap;}
@@ -3240,7 +3240,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 2, 2024</p>
+      <p class="date">December 4, 2024</p>
     </div>
   </div>
   
@@ -3266,7 +3266,7 @@ window.Quarto = {
 </div>
 <section id="edgar-andersons-iris-data" class="level2"><h2 class="anchored" data-anchor-id="edgar-andersons-iris-data">Edgar Anderson’s Iris Data</h2>
 <p>This famous (Fisher’s or Anderson’s) <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x">iris</a> data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.</p>
-<p>The first 6 rows of the iris data set is shown in <a href="#tbl-iris" class="quarto-xref">Table 1</a>.</p>
+<p>The first 6 rows of the iris data set are shown in <a href="#tbl-iris" class="quarto-xref">Table 1</a>.</p>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris</span> <span class="op">|&gt;</span> <span class="co"># call the data</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># get the first six rows of the data</span></span>
@@ -3343,7 +3343,7 @@ Table 1: The first 6 observations of the data set.
 </div>
 </div>
 </section><section id="descriptive-statistics" class="level2"><h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
-<p>The mean, standard deviation, minimum, and maximum of the data set by species is shown in <a href="#tbl-summary" class="quarto-xref">Table 2</a>. There are a total of 150 observations; 50 observations per species.</p>
+<p>The mean, standard deviation, minimum, and maximum of the data set by species are shown in <a href="#tbl-summary" class="quarto-xref">Table 2</a>. There is a total of 150 observations; 50 observations per species.</p>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris</span> <span class="op">|&gt;</span> <span class="co"># call the data</span></span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_summary.html">tbl_summary</a></span><span class="op">(</span> <span class="co"># create a table</span></span>
@@ -3816,10 +3816,10 @@ height: 0px !important;
 </div>
 <p>A visualization of the sepal length is shown in <a href="#fig-viz" class="quarto-xref">Figure 1</a>.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mean_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Length</span><span class="op">)</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mean_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Length</span><span class="op">)</span> <span class="co"># computed the mean sepal length of iris</span></span>
 <span></span>
-<span><span class="va">iris</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sepal.Length</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="va">iris</span> <span class="op">|&gt;</span> <span class="co"># called the data</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sepal.Length</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="co"># defining x y variables</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">.3</span>, fill <span class="op">=</span> <span class="st">&quot;skyblue&quot;</span>, color <span class="op">=</span> <span class="st">&quot;black&quot;</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">mean_value</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">&quot;red&quot;</span>, linetype <span class="op">=</span> <span class="st">&quot;dashed&quot;</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">&quot;Sepal Length&quot;</span>, y <span class="op">=</span> <span class="st">&quot;Count&quot;</span><span class="op">)</span> <span class="op">+</span></span>
@@ -3844,8 +3844,9 @@ Figure 1: Histogram with mean line.
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <section id="research-question" class="level3"><h3 class="anchored" data-anchor-id="research-question">Research Question</h3>
-<p>Is the mean sepal length different from the expected average of 5.8 cm?</p>
-</section><section id="hypothesis-and-test-statistics" class="level3"><h3 class="anchored" data-anchor-id="hypothesis-and-test-statistics">Hypothesis and Test Statistics</h3>
+<ol type="1">
+<li>Is the mean sepal length different from the expected average of 5.8 cm?</li>
+</ol></section><section id="hypothesis-and-test-statistics" class="level3"><h3 class="anchored" data-anchor-id="hypothesis-and-test-statistics">Hypothesis and Test Statistics</h3>
 <ul>
 <li><p><span class="math inline">\(H_0:\mu=5.9\)</span>; the mean sepal length is equal to 5.9 cm.</p></li>
 <li><p><span class="math inline">\(H_a:\mu\ne5.9\)</span>; the mean sepal length is different from 5.9 cm.</p></li>

@@ -65,7 +65,7 @@ titanic |>
 
 ## Descriptive Statistics
 
-The frequency distribution of `Survived` when grouped according to `Sex` is shown in @tbl-summary. Most of the passengers are male. The majority of female passengers survived, whereas the majority of male passengers did not. The number of survived passengers for both female and male are close, that is 344 and 367 respectively.
+The frequency distribution of `Survived` when grouped according to `Sex` is shown in @tbl-summary. Most of the passengers are male. The majority of female passengers survived, whereas the majority of male passengers did not. Nonetheless, the number of survived passengers for both female and male are close, that is 344 and 367 respectively.
 
 ```{r}
 #| label: tbl-summary
