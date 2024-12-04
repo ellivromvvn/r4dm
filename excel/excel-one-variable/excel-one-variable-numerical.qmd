@@ -60,7 +60,7 @@ iris |> # call the data
 
 ## Descriptive Statistics
 
-The mean, standard deviation, minimum, and maximum of the data set by species is shown in @tbl-summary. There are a total of 150 observations; 50 observations per species.
+The mean, standard deviation, minimum, and maximum of the data set by species are shown in @tbl-summary. There is a total of 150 observations; 50 observations per species.
 
 ```{r}
 #| label: tbl-summary
