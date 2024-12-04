@@ -182,6 +182,16 @@
       ],
       "Hash": "4ac8e423216b8b70cb9653d1b3f71eb9"
     },
+    "RcppParallel": {
+      "Package": "RcppParallel",
+      "Version": "5.1.9",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "f38a72a419b91faac0ce5d9eee04c120"
+    },
     "Rmpfr": {
       "Package": "Rmpfr",
       "Version": "1.0-0",
@@ -219,6 +229,18 @@
         "R"
       ],
       "Hash": "343711656738ac40edbc013a961c443b"
+    },
+    "TTR": {
+      "Package": "TTR",
+      "Version": "0.24.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "curl",
+        "xts",
+        "zoo"
+      ],
+      "Hash": "1acd2b3db6e118dd161ee6cabedc4d4e"
     },
     "V8": {
       "Package": "V8",
@@ -338,13 +360,13 @@
     },
     "bit": {
       "Package": "bit",
-      "Version": "4.5.0",
+      "Version": "4.5.0.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R"
       ],
-      "Hash": "5dc7b2677d65d0e874fc4aaf0e879987"
+      "Hash": "f89f074e0e49bf1dbe3eba0a15a91476"
     },
     "bit64": {
       "Package": "bit64",
@@ -1291,7 +1313,7 @@
     },
     "gtsummary": {
       "Package": "gtsummary",
-      "Version": "2.0.3",
+      "Version": "2.0.4",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1306,7 +1328,7 @@
         "tidyr",
         "vctrs"
       ],
-      "Hash": "cd4d593e8ce0ad4e5c2c0acc50ce7330"
+      "Hash": "a6cb3a1251d2a86c14ccc3e9977437dc"
     },
     "haven": {
       "Package": "haven",
@@ -2088,6 +2110,32 @@
       ],
       "Hash": "1cba04a4e9414bdefc9dcaa99649a8dc"
     },
+    "quadprog": {
+      "Package": "quadprog",
+      "Version": "1.5-8",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "5f919ae5e7f83a6f91dcf2288943370d"
+    },
+    "quantmod": {
+      "Package": "quantmod",
+      "Version": "0.4.26",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "TTR",
+        "curl",
+        "jsonlite",
+        "methods",
+        "xts",
+        "zoo"
+      ],
+      "Hash": "59321b609790f8ccf92145810e4dd507"
+    },
     "quantreg": {
       "Package": "quantreg",
       "Version": "5.99.1",
@@ -2297,6 +2345,20 @@
       ],
       "Hash": "df99277f63d01c34e95e3d2f06a79736"
     },
+    "rstantools": {
+      "Package": "rstantools",
+      "Version": "2.4.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "Rcpp",
+        "RcppParallel",
+        "desc",
+        "stats",
+        "utils"
+      ],
+      "Hash": "23813e635fcd210c33e154aa46d0a21a"
+    },
     "rstatix": {
       "Package": "rstatix",
       "Version": "0.7.2",
@@ -2407,7 +2469,7 @@
     },
     "statsExpressions": {
       "Package": "statsExpressions",
-      "Version": "1.6.1",
+      "Version": "1.6.2",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -2428,13 +2490,13 @@
         "performance",
         "purrr",
         "rlang",
+        "rstantools",
         "stats",
-        "tibble",
         "tidyr",
         "withr",
         "zeallot"
       ],
-      "Hash": "6ce678de3d27ff44d110d6b3c5c09eda"
+      "Hash": "51e7f8a7b5bab63480d2f2d7bd1d548a"
     },
     "stringi": {
       "Package": "stringi",
@@ -2633,6 +2695,23 @@
       ],
       "Hash": "3ec7e3ddcacc2d34a9046941222bf94d"
     },
+    "tseries": {
+      "Package": "tseries",
+      "Version": "0.10-58",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "graphics",
+        "jsonlite",
+        "quadprog",
+        "quantmod",
+        "stats",
+        "utils",
+        "zoo"
+      ],
+      "Hash": "f9269495a613f8e237f01691bf789ead"
+    },
     "tzdb": {
       "Package": "tzdb",
       "Version": "0.4.0",
@@ -2752,6 +2831,18 @@
       ],
       "Hash": "1d0336142f4cd25d8d23cd3ba7a8fb61"
     },
+    "xts": {
+      "Package": "xts",
+      "Version": "0.14.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "methods",
+        "zoo"
+      ],
+      "Hash": "be0d8259b62c520dac5097ad7ba9baea"
+    },
     "yaml": {
       "Package": "yaml",
       "Version": "2.3.10",
@@ -2765,6 +2856,21 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "ee9b643aa8331c45d8d82eb3a137c9bc"
+    },
+    "zoo": {
+      "Package": "zoo",
+      "Version": "1.8-12",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "grDevices",
+        "graphics",
+        "lattice",
+        "stats",
+        "utils"
+      ],
+      "Hash": "5c715954112b45499fb1dadc6ee6ee3e"
     }
   }
 }
