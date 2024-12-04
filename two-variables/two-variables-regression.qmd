@@ -63,7 +63,7 @@ A data frame with 32 observations on 11 (numeric) variables.
 
 -   `carb` Number of carburetors
 
-The first 6 rows of the data set is shown in @tbl-mtcars
+The first 6 rows of the data set are shown in @tbl-mtcars
 
 ```{r}
 #| label: tbl-mtcars
@@ -79,7 +79,7 @@ mtcars |> # call the data
 
 ## Descriptive Statistics
 
-The mean, standard deviation, minimum, and maximum of `mpg` and `wt` is shown in @tbl-summary. There are a total of 32 observations.
+The mean, standard deviation, minimum, and maximum of `mpg` and `wt` are shown in @tbl-summary. There are a total of 32 observations.
 
 ```{r}
 #| label: tbl-summary
@@ -109,7 +109,6 @@ get_regression_table(model) |>
 ```
 
 With the *p*-values less than 5%, there is strong evidence that the estimates are significantly different from 0. Weight (1000lb) significantly predicts miles/(US) gallon. For each additional weight (1000lb), the model predicts a decrease of 5.344 miles/(US) gallon. @fig-plot shows the plot of `mpg` vs `wt` and the regression line with 95% confidence interval. It also shows the linear model and the coefficient of determination, $R^2$. About 75% of the variability in miles/(US) gallon is explained by weight (1000lb) in the model. This also suggests a strong negative linear association between the variables.
-
 
 ```{r}
 #| label: fig-plot

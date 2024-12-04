@@ -1,5 +1,5 @@
 ---
-title: "Two Variables: Quantitative"
+title: "Two Variables: Regression"
 author: Orville D. Hombrebueno
 date: today
 format: 
@@ -27,6 +27,9 @@ library(gtsummary)
 library(ggstatsplot)
 library(downlit)
 library(broom)
+library(car)
+library(moderndive)
+library(ggpubr)
 
 # load data
 data(mtcars)
@@ -60,7 +63,7 @@ A data frame with 32 observations on 11 (numeric) variables.
 
 -   `carb` Number of carburetors
 
-The first 6 rows of the data set are shown in @tbl-mtcars
+The first 6 rows of the data set is shown in @tbl-mtcars
 
 ```{r}
 #| label: tbl-mtcars
@@ -76,61 +79,35 @@ mtcars |> # call the data
 
 ## Descriptive Statistics
 
-The mean, standard deviation, minimum, and maximum of `hp` and `mpg` in the `mtcars` data set are shown in @tbl-summary. There are a total of 32 observations.
+The mean, standard deviation, minimum, and maximum of `mpg` and `wt` is shown in @tbl-summary. There are a total of 32 observations.
 
 ```{r}
 #| label: tbl-summary
-#| tbl-cap: "Summary statistics of the data set."
+#| tbl-cap: "Summary statistics."
 #| message: false
 
 mtcars |> # call the data
   tbl_summary( # create a table
-    include = c(mpg, hp), # select variables
+    include = c(mpg, wt), # select variables
     statistic = all_continuous() ~ "{mean} ± {sd} ({min} - {max})", # descriptive statistics
     digits = all_continuous() ~ 2 # no. of digits (rounding)
   )
 ```
 
-A visualization of miles/(US) gallon and gross horsepower is shown in @fig-viz.
+# Linear Regression
 
-![Scatterplot of `mpg` and `hp`.](images/viz-num.png){#fig-viz}
-
-# Hypothesis Testing
-
-## Research Question
-
-Is there a significant relationship between gross horsepower and miles/(US) gallon?
-
-## Hypothesis and Test Statistics
-
--   $H_0:\rho=0$; there is no linear relationship between gross horsepower and miles/(US) gallon.
-
--   $H_a:\rho\ne0$; there is a linear relationship between gross horsepower and miles/(US) gallon.
-
--   Significance level, $\alpha=5\%$.
-
--   **Pearson correlation**
-
--   $n>30$; large sample.
-
-## Results and Interpretation
-
-The test statistics is shown on @tbl-stats.
+A linear regression model was used to approximate the relationship between miles/(US) gallon and Weight (1000 lbs). The response variable is `mpg` and the explanatory variable is `wt`. The model summary is shown in @tbl-regression.
 
 ```{r}
-#| label: tbl-stats
-#| tbl-cap: Test statistics.
+#| label: tbl-regression
+#| tbl-cap: Summary of least squares fit for the `mpg` and `wt`.
 
-cor.test(mtcars$mpg, mtcars$hp, method = "pearson") |>
-  tidy() |>
-  select(
-    estimate,
-    statistic,
-    p.value,
-    method
-  ) |>
-  mutate(across(where(is.numeric), ~ round(.x, 2))) |>
+model <- lm(mpg ~ wt, data = mtcars)
+
+get_regression_table(model) |>
   kable()
 ```
 
-Based on the *p*-value being less than 5% (*p*-value = .001), we reject the null hypothesis. There is strong evidence of a linear relationship between gross horsepower and miles/(US) gallon. The correlation ($\rho=-0.78$) suggests a moderate negative relationship between the two variables. Increased gross horsepower is moderately associated with decreased miles/(US) gallon.
+With the *p*-values less than 5%, there is strong evidence that the estimates are significantly different from 0. Weight (1000lb) significantly predicts miles/(US) gallon. For each additional weight (1000lb), the model predicts a decrease of 5.344 miles/(US) gallon. @fig-viz shows the plot of `mpg` vs `wt` and the predicted values. About 75% of the variability in miles/(US) gallon is explained by weight (1000lb) in the model. This also suggests a strong negative linear association between the variables.
+
+![Scatterplot of `mpg` and `hp`.](images/viz-reg.png){#fig-viz}
