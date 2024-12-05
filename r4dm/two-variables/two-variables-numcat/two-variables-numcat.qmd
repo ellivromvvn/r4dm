@@ -96,8 +96,7 @@ mtcars |> # call the data
     include = c(mpg, am), # select variables
     statistic = all_continuous() ~ "{mean} ± {sd} ({min} - {max})", # descriptive statistics
     digits = all_continuous() ~ 2 # no. of digits (rounding)
-  ) |>
-  add_overall()
+  )
 ```
 
 # Hypothesis Testing
