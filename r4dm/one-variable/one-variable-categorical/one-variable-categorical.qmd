@@ -38,15 +38,15 @@ titanic <- ggstatsplot::Titanic_full |>
 
 The `Titanic_full` data set of the [{ggstatsplot}]{style="font-family:monospace;"} package is a data frame with 2201 rows and 5 variables.
 
--   id. Dummy identity number for each person.
+- id. Dummy identity number for each person.
 
--   Class. 1st, 2nd, 3rd, Crew.
+- Class. 1st, 2nd, 3rd, Crew.
 
--   Sex. Male, Female.
+- Sex. Male, Female.
 
--   Age. Child, Adult.
+- Age. Child, Adult.
 
--   Survived. No, Yes.
+- Survived. No, Yes.
 
 This data set provides information on the fate of passengers on the fatal maiden voyage of the ocean liner Titanic, summarized according to economic status (class), sex, age and survival.
 
@@ -101,15 +101,15 @@ Do the passengers have a 50/50 chance of surviving?
 
 ### Hypothesis and Test Statistics
 
--   $H_0:p=50\%$; proportions of surviving are equal.
+- $H_0:p=50\%$; proportions of surviving are equal.
 
--   $H_a:p\ne50\%$; proportions of surviving are different.
+- $H_a:p\ne50\%$; proportions of surviving are different.
 
--   Significance level, $\alpha=5\%$.
+- Significance level, $\alpha=5\%$.
 
--   **chi-squared goodness of fit test**
+- **chi-squared goodness of fit test**
 
--   Success-failure condition is met.
+- Success-failure condition is met.
 
 ### Results and Interpretation
 
@@ -138,15 +138,15 @@ Is the survival rate less than the expected survival rate of 35%?
 
 ### Hypothesis and Test Statistics
 
--   $H_0:p=35\%$; the survival rate is equal to the expected survival rate of 35%.
+- $H_0:p=35\%$; the survival rate is equal to the expected survival rate of 35%.
 
--   $H_a:p<35\%$; the survival rate is less than the expected survival rate of 35%.
+- $H_a:p<35\%$; the survival rate is less than the expected survival rate of 35%.
 
--   Significance level, $\alpha=5\%$.
+- Significance level, $\alpha=5\%$.
 
--   **one proportion Z-test**
+- **one proportion Z-test**
 
--   Success-failure condition is met.
+- Success-failure condition is met.
 
 ### Results and Interpretation
 
